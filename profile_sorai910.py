@@ -1,0 +1,1 @@
+aloha = 'love' + 'peace' + 'compassion' + 'mercy'
