@@ -44,10 +44,24 @@ class GPT():
 
         response = completion.choices[0].text
         return response
+    
+    def recipe(self,course):
+        ''' Generate a GPT response '''
+        prompt = 'genrate a recipe for ' + course
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt=prompt,
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.8,
+        )
 
+        response = completion.choices[0].text
+        return response 
 if __name__=='__main__':
     '''
     '''
     import os
     g = GPT(os.environ.get("APIKEY"))
-    print(g.getResponse("what does openai's GPT stand for?"))
+    print(g.recipe("chicken"))
