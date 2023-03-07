@@ -44,10 +44,23 @@ def team():
     return f'''
     this is our team page'''
 
-@app.route('/ming')
+@app.route('/ming', methods=['GET', 'POST'])
 def ming():
-    return f'''
-    Ming-Shih Wang'''
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.get_tools_for_recipe(prompt)
+        return f'''
+        Ming-Shih Wang'''
+    else:
+        return '''
+        <h1>Ming-Shih</h1>
+        <h2>Enter the course you're cooking and recieve a list of tools</h2>
+        Enter your query below
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
 @app.route('/gptdemo', methods=['GET', 'POST'])
 def gptdemo():
     ''' handle a get request by sending a form 

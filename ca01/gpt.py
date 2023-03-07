@@ -65,7 +65,7 @@ class GPT():
         response = completion.choices[0].text
         return response 
     
-    def tools_for_recipe(self, course):
+    def get_tools_for_recipe(self, course):
         '''Ming'''
         '''generates a GPT response that tells the user what they should get to complete the course they are cooking'''
         prompt = f'what are the things I would need to cook {course} as a college student'
