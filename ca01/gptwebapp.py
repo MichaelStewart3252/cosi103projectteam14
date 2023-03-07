@@ -33,11 +33,21 @@ def index():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1>GPT Demo</h1>
-        <a href="{url_for('gptdemo')}">Ask questions to GPT</a>
+        <h1>GPT Project Team 14</h1>
+        <a href="{url_for('gptdemo')}">Ask questions to GPT</a> 
+        <a href="{url_for('team')}">Team Page</a>
+        <a href="{url_for('ming')}">Ming-Shih</a>
     '''
 
+@app.route('/team')
+def team():
+    return f'''
+    this is our team page'''
 
+@app.route('/ming')
+def ming():
+    return f'''
+    Ming-Shih Wang'''
 @app.route('/gptdemo', methods=['GET', 'POST'])
 def gptdemo():
     ''' handle a get request by sending a form 
