@@ -45,13 +45,12 @@ class GPT():
         return completion
     
     def getResponse(self,prompt):
-        ''' Generate a GPT response '''
+        ''' template to generate a GPT response '''
         completion = self.result(self,prompt)
         response = completion.choices[0].text
         return response
     
     def recipe(self,course):
-        '''Harry'''
         ''' Generate a GPT response '''
         prompt = 'genrate a recipe for ' + course
         completion = openai.Completion.create(
