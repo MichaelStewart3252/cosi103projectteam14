@@ -19,8 +19,9 @@ On Windows:
 '''
 import openai
 
-
 class GPT():
+
+
     ''' make queries to gpt from a given API '''
     def __init__(self,apikey):
         ''' store the apikey in an instance variable '''
@@ -31,21 +32,26 @@ class GPT():
         # Set up the model and prompt
         self.model_engine = "text-davinci-003"
 
-    def getResponse(self,prompt):
-        ''' Generate a GPT response '''
+    def result(self, self_obj, prompt):
+        '''Ming: I added this function that returns the results to avoid writing this so many times in our program'''
         completion = openai.Completion.create(
-            engine=self.model_engine,
+            engine=self_obj.model_engine,
             prompt=prompt,
             max_tokens=1024,
             n=1,
             stop=None,
             temperature=0.8,
         )
-
+        return completion
+    
+    def getResponse(self,prompt):
+        ''' Generate a GPT response '''
+        completion = self.result(self,prompt)
         response = completion.choices[0].text
         return response
     
     def recipe(self,course):
+        '''Harry'''
         ''' Generate a GPT response '''
         prompt = 'genrate a recipe for ' + course
         completion = openai.Completion.create(
@@ -59,6 +65,15 @@ class GPT():
 
         response = completion.choices[0].text
         return response 
+    
+    def tools_for_recipe(self, course):
+        '''Ming'''
+        '''generates a GPT response that tells the user what they should get to complete the course they are cooking'''
+        prompt = f'what are the things I would need to cook {course} as a college student'
+        completion = self.result(self, prompt)
+        response = completion.choices[0].text
+        return response 
+        
 if __name__=='__main__':
     '''
     '''
