@@ -28,38 +28,29 @@ gptAPI = GPT(os.environ.get('APIKEY'))
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'_5#y2L"F4Q789789uioujkkljkl...8z\n\xec]/'
 
+# This is the nav_bar for all pages 
+nav_bar=f'''
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
+    </head>
+    <h1>GPT Project Team 14</h1>
+    <div class="nav-bar">
+        <a href="/">Home</a>
+        <a href="/about">About Page</a> 
+        <a href="/team">Team Page</a>
+        <a href="/ming">Ming-Shih</a>
+        <a href="/xiaoran">Xiaoran</a>
+    </div>
+    '''
 
 @app.route('/')
 def index():
     ''' display a link to the general query page '''
     print('processing / route')
-    return f'''
-        <head>
-            <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
-        </head>
-        <h1>GPT Project Team 14</h1>
-        <div class="nav-bar">
-            <a href="{url_for('team')}">Team Page</a>
-            <a href="{url_for('about')}">About Page</a>
-            <a href="{url_for('ming')}">Ming-Shih</a>
-            <a href="{url_for('xiaoran')}">Xiaoran</a>
-        </div>
-    '''
+    return nav_bar
 
 @app.route('/team')
 def team():
-    nav_bar=f'''
-    <head>
-        <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
-    </head>
-    <div class="nav-bar">
-        <a href="{url_for('index')}">Home</a> 
-        <a href="{url_for('about')}">About Page</a>
-        <a href="{url_for('team')}">Team Page</a>
-        <a href="{url_for('ming')}">Ming-Shih</a>
-        <a href="{url_for('xiaoran')}">Xiaoran</a>
-    </div>
-    '''
     return f'''
     {nav_bar}
     <div class="container">
@@ -75,37 +66,15 @@ def team():
     '''
 @app.route('/about')
 def about():
-    nav_bar=f'''
-    <head>
-        <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
-    </head>
-    <div class="nav-bar">
-        <a href="{url_for('index')}">Home</a>
-        <a href="{url_for('about')}">About Page</a> 
-        <a href="{url_for('team')}">Team Page</a>
-        <a href="{url_for('ming')}">Ming-Shih</a>
-        <a href="{url_for('xiaoran')}">Xiaoran</a>
-    </div>
-    '''
     return f'''
     {nav_bar}
-
+    <div class="container">
+        <h2>Xiaoran</h2>
+        <p>My program ask the user to enter a date of their choice and return a holiday/national day of that specific date via ChatGPT openai API!</p>
+    </div>
     '''
 @app.route('/ming', methods=['GET', 'POST'])
 def ming():
-    # This is the nav_bar for all pages 
-    nav_bar=f'''
-    <head>
-        <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
-    </head>
-    <div class="nav-bar">
-        <a href="{url_for('index')}">Home</a>
-        <a href="{url_for('about')}">About Page</a> 
-        <a href="{url_for('team')}">Team Page</a>
-        <a href="{url_for('ming')}">Ming-Shih</a>
-        <a href="{url_for('xiaoran')}">Xiaoran</a>
-    </div>
-    '''
     if request.method == 'POST':
         prompt = request.form['prompt']
         answer = gptAPI.get_tools_for_recipe(prompt)
@@ -125,24 +94,11 @@ def ming():
                 <textarea name="prompt"></textarea>
                 <p><input class="submit" type=submit value="get response"><p/>
             </form>
-        <div/>
+        </div>
         '''
     
 @app.route('/xiaoran', methods=['GET', 'POST'])
 def xiaoran():
-    
-    nav_bar=f'''
-    <head>
-        <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
-    </head>
-    <div class="nav-bar">
-        <a href="{url_for('index')}">Home</a>
-        <a href="{url_for('about')}">About Page</a> 
-        <a href="{url_for('team')}">Team Page</a>
-        <a href="{url_for('ming')}">Ming-Shih</a>
-        <a href="{url_for('xiaoran')}">Xiaoran</a>
-    </div>
-    '''
     if request.method == 'POST':
         date = request.form['date']
         answer = gptAPI.get_celebrate(date)
@@ -156,7 +112,7 @@ def xiaoran():
         return f'''
         {nav_bar}
         <div class="container">
-            <h1>Xiaoran Liu</h1>
+            <h1>Xiaoran</h1>
             <h2>What day is celebrated on </h2>
             <form method="post">
                 <textarea name="date"></textarea>
