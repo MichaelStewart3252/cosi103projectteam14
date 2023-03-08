@@ -23,6 +23,20 @@ a:hover{
     justify-content: center;
     align-items: center;
 }
+
+.aboutContainer{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction: column;
+    justify-content:center;
+    align-items: start;
+    margin-left: 400px;
+}
+
+.aboutContainer > div {
+    flex: 50%;
+    margin-bottom: 10px;
+}
 .submit{
     background-color: transparent;
     border: solid 1px black;

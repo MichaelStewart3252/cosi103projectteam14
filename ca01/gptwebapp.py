@@ -54,28 +54,31 @@ def team():
     return f'''
     {nav_bar}
     <div class="container">
-    <h1>Xiaoran</h2>
-    <ul>
-        <li>Major: Computer Science</li>
-        <li>Class standing: first-year master student</li>
-        <li>Hometown: Beijing, China</li>
-        <li>Role: Software Development and Emotional Support Engineer</li>
-        <li>Fun fact: I was in a plane accident at the age of 12!</li>
-    </ul>
+    <div class="item">
+        <h1>Xiaoran</h2>
+        <ul>
+            <li>Major: Computer Science</li>
+            <li>Class standing: first-year master student</li>
+            <li>Hometown: Beijing, China</li>
+            <li>Role: Software Development and Emotional Support Engineer</li>
+            <li>Fun fact: I was in a plane accident at the age of 12!</li>
+        </ul>
+    </div>
     </div>
     '''
 @app.route('/about')
 def about():
     return f'''
     {nav_bar}
-    <div class="container">
-        <h2>Ming</h2>
-        <p>My program generates a GPT response that tells the user what they should get to complete the course they are cooking.</p>
-    </div>
-
-    <div class="container">
-        <h2>Xiaoran</h2>
-        <p>My program asks the user to enter a date of their choice and return a holiday/national day of that specific date via ChatGPT openai API!</p>
+    <div class="aboutContainer">
+        <div class="item">
+            <h2>Ming</h2>
+            <p>My program generates a GPT response that tells the user what they should get to complete the course they are cooking.</p>
+        </div>
+        <div class="item">
+            <h2>Xiaoran</h2>
+            <p>My program asks the user to enter a date of their choice and return a holiday/national day of that specific date via ChatGPT openai API!</p>
+        </div>
     </div>
     '''
 @app.route('/ming', methods=['GET', 'POST'])
@@ -119,9 +122,9 @@ def xiaoran():
         <div class="container">
             <h1>Xiaoran</h1>
             <h2>What day is celebrated on </h2>
-            <form method="post">
+            <form class="form" method="post">
                 <textarea name="date"></textarea>
-                <p><input type=submit value="get response"></p>
+                <p><input class="submit" type=submit value="get response"></p>
             </form>
         </div>
         '''
