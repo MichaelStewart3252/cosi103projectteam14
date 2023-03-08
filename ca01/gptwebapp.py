@@ -28,44 +28,65 @@ gptAPI = GPT(os.environ.get('APIKEY'))
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'_5#y2L"F4Q789789uioujkkljkl...8z\n\xec]/'
 
+
 @app.route('/')
 def index():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
+        <head>
+            <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
+        </head>
         <h1>GPT Project Team 14</h1>
-        <a href="{url_for('gptdemo')}">Ask questions to GPT</a> 
-        <a href="{url_for('team')}">Team Page</a>
-        <a href="{url_for('ming')}">Ming-Shih</a>
+        <div class="nav-bar">
+            <a href="{url_for('team')}">Team Page</a>
+            <a href="{url_for('ming')}">Ming-Shih</a>
+        </div>
     '''
 
 @app.route('/team')
 def team():
+    nav_bar=f'''
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
+    </head>
+    <div class="nav-bar">
+                <a href="{url_for('index')}">Home</a> 
+                <a href="{url_for('team')}">Team Page</a>
+                <a href="{url_for('ming')}">Ming-Shih</a>
+    </div>
+    '''
     return f'''
-    this is our team page'''
+    {nav_bar}
+    '''
 
 @app.route('/ming', methods=['GET', 'POST'])
 def ming():
+    nav_bar=f'''
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
+    </head>
+    <div class="nav-bar">
+                <a href="{url_for('index')}">Home</a> 
+                <a href="{url_for('team')}">Team Page</a>
+                <a href="{url_for('ming')}">Ming-Shih</a>
+    </div>
+    '''
     if request.method == 'POST':
         prompt = request.form['prompt']
         answer = gptAPI.get_tools_for_recipe(prompt)
         return f'''
-        <head>
-            <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
-        </head>
+        {nav_bar}
         <div class="answer">
             <h2>{answer}<h2/>
         </div>
         '''
     else:
-        return '''
-        <head>
-            <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
-        </head>
+        return f'''
+        {nav_bar}
         <div class="container">
             <h1>Ming-Shih</h1>
             <h2>Enter the course you're cooking and recieve a list of tools you'll need</h2>
-   
             <form class="form" method="post">
                 <textarea name="prompt"></textarea>
                 <p><input class="submit" type=submit value="get response"><p/>
@@ -73,33 +94,33 @@ def ming():
         <div/>
         '''
         
-@app.route('/gptdemo', methods=['GET', 'POST'])
-def gptdemo():
-    ''' handle a get request by sending a form 
-        and a post request by returning the GPT response
-    '''
-    if request.method == 'POST':
-        prompt = request.form['prompt']
-        answer = gptAPI.getResponse(prompt)
-        return f'''
-        <h1>GPT Demo</h1>
-        <pre style="bgcolor:yellow">{prompt}</pre>
-        <hr>
-        Here is the answer in text mode:
-        <div style="border:thin solid black">{answer}</div>
-        Here is the answer in "pre" mode:
-        <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('gptdemo')}> make another query</a>
-        '''
-    else:
-        return '''
-        <h1>GPT Demo App</h1>
-        Enter your query below
-        <form method="post">
-            <textarea name="prompt"></textarea>
-            <p><input type=submit value="get response">
-        </form>
-        '''
+# @app.route('/gptdemo', methods=['GET', 'POST'])
+# def gptdemo():
+#     ''' handle a get request by sending a form 
+#         and a post request by returning the GPT response
+#     '''
+#     if request.method == 'POST':
+#         prompt = request.form['prompt']
+#         answer = gptAPI.getResponse(prompt)
+#         return f'''
+#         <h1>GPT Demo</h1>
+#         <pre style="bgcolor:yellow">{prompt}</pre>
+#         <hr>
+#         Here is the answer in text mode:
+#         <div style="border:thin solid black">{answer}</div>
+#         Here is the answer in "pre" mode:
+#         <pre style="border:thin solid black">{answer}</pre>
+#         <a href={url_for('gptdemo')}> make another query</a>
+#         '''
+#     else:
+#         return '''
+#         <h1>GPT Demo App</h1>
+#         Enter your query below
+#         <form method="post">
+#             <textarea name="prompt"></textarea>
+#             <p><input type=submit value="get response">
+#         </form>
+#         '''
 
 if __name__=='__main__':
     # run the code on port 5001, MacOS uses port 5000 for its own service :(
