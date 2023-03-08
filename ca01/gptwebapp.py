@@ -33,8 +33,8 @@ nav_bar=f'''
     <head>
         <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
     </head>
-    <h1>GPT Project Team 14</h1>
     <div class="nav-bar">
+        <h1 class="team-name">GPT Project Team 14</h1>
         <a href="/">Home</a>
         <a href="/about">About Page</a> 
         <a href="/team">Team Page</a>
