@@ -40,6 +40,7 @@ def index():
         <h1>GPT Project Team 14</h1>
         <div class="nav-bar">
             <a href="{url_for('team')}">Team Page</a>
+            <a href="{url_for('about')}">About Page</a>
             <a href="{url_for('ming')}">Ming-Shih</a>
         </div>
     '''
@@ -51,25 +52,43 @@ def team():
         <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
     </head>
     <div class="nav-bar">
-                <a href="{url_for('index')}">Home</a> 
-                <a href="{url_for('team')}">Team Page</a>
-                <a href="{url_for('ming')}">Ming-Shih</a>
+        <a href="{url_for('index')}">Home</a> 
+        <a href="{url_for('about')}">About Page</a>
+        <a href="{url_for('team')}">Team Page</a>
+        <a href="{url_for('ming')}">Ming-Shih</a>
     </div>
     '''
     return f'''
     {nav_bar}
     '''
-
-@app.route('/ming', methods=['GET', 'POST'])
-def ming():
+@app.route('/about')
+def about():
     nav_bar=f'''
     <head>
         <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
     </head>
     <div class="nav-bar">
-                <a href="{url_for('index')}">Home</a> 
-                <a href="{url_for('team')}">Team Page</a>
-                <a href="{url_for('ming')}">Ming-Shih</a>
+        <a href="{url_for('index')}">Home</a>
+        <a href="{url_for('about')}">About Page</a> 
+        <a href="{url_for('team')}">Team Page</a>
+        <a href="{url_for('ming')}">Ming-Shih</a>
+    </div>
+    '''
+    return f'''
+    {nav_bar}
+    '''
+@app.route('/ming', methods=['GET', 'POST'])
+def ming():
+    # This is the nav_bar for all pages 
+    nav_bar=f'''
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
+    </head>
+    <div class="nav-bar">
+        <a href="{url_for('index')}">Home</a>
+        <a href="{url_for('about')}">About Page</a> 
+        <a href="{url_for('team')}">Team Page</a>
+        <a href="{url_for('ming')}">Ming-Shih</a>
     </div>
     '''
     if request.method == 'POST':
