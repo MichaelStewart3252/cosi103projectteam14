@@ -55,13 +55,13 @@ def team():
     {nav_bar}
     <div class="container">
     <h1>Xiaoran</h2>
-    <ol>
-        <ul>Major: Computer Science</ul>
-        <ul>Class standing: first-year master student</ul>
-        <ul>Hometown: Beijing, China</ul>
-        <ul>Role: Software Development and Emotional Support Engineer</ul>
-        <ul>Fun fact: I was in a plane accident at the age of 12!</ul>
-    </ol>
+    <ul>
+        <li>Major: Computer Science</li>
+        <li>Class standing: first-year master student</li>
+        <li>Hometown: Beijing, China</li>
+        <li>Role: Software Development and Emotional Support Engineer</li>
+        <li>Fun fact: I was in a plane accident at the age of 12!</li>
+    </ul>
     </div>
     '''
 @app.route('/about')
@@ -69,8 +69,13 @@ def about():
     return f'''
     {nav_bar}
     <div class="container">
+        <h2>Ming</h2>
+        <p>My program generates a GPT response that tells the user what they should get to complete the course they are cooking.</p>
+    </div>
+
+    <div class="container">
         <h2>Xiaoran</h2>
-        <p>My program ask the user to enter a date of their choice and return a holiday/national day of that specific date via ChatGPT openai API!</p>
+        <p>My program asks the user to enter a date of their choice and return a holiday/national day of that specific date via ChatGPT openai API!</p>
     </div>
     '''
 @app.route('/ming', methods=['GET', 'POST'])
@@ -81,7 +86,7 @@ def ming():
         return f'''
         {nav_bar}
         <div class="answer">
-            <h2>{answer}<h2/>
+            <h2>{answer}</h2>
         </div>
         '''
     else:
@@ -105,7 +110,7 @@ def xiaoran():
         return f'''
         {nav_bar}
         <div class="answer">
-            <h2>{answer}<h2/>
+            <h2>{answer}</h2>
         </div>
         '''
     else:
