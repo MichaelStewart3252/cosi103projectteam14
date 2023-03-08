@@ -40,6 +40,7 @@ nav_bar=f'''
         <a href="/team">Team Page</a>
         <a href="/ming">Ming-Shih</a>
         <a href="/xiaoran">Xiaoran</a>
+        <a href="/harry">Harry</a>
     </div>
     '''
 
@@ -64,6 +65,15 @@ def team():
             <li>Fun fact: I was in a plane accident at the age of 12!</li>
         </ul>
     </div>
+    <div class="item">
+        <h1>Harry</h2>
+        <ul>
+            <li>Major: Computer Science & Anthropology</li>
+            <li>Class standing: sophomore</li>
+            <li>Hometown: Beijing, China</li>
+            <li>Role: Software Development</li>
+            <li>Fun fact: I love the color yellow, yea...</li>
+        </ul>
     </div>
     '''
 @app.route('/about')
@@ -78,6 +88,10 @@ def about():
         <div class="item">
             <h2>Xiaoran</h2>
             <p>My program asks the user to enter a date of their choice and return a holiday/national day of that specific date via ChatGPT openai API!</p>
+        </div>
+         <div class="item">
+            <h2>Harry</h2>
+            <p>My function provides a recipe for the course my user is looking fo. Eat well!</p>
         </div>
     </div>
     '''
@@ -128,7 +142,32 @@ def xiaoran():
             </form>
         </div>
         '''
-        
+    
+@app.route('/harry', methods=['GET', 'POST'])
+def harry():
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.recipe(prompt)
+        return f'''
+        {nav_bar}
+        <div class="answer">
+            <h2>{answer}</h2>
+        </div>
+        '''
+    else:
+        return f'''
+        {nav_bar}
+        <div class="container">
+            <h1>Harry C.</h1>
+            <h2>Enter the course you're cooking tonight and you will receive the recipe for it</h2>
+            <form class="form" method="post">
+                <textarea name="prompt"></textarea>
+                <p><input class="submit" type=submit value="get response"><p/>
+            </form>
+        </div>
+        '''
+    
+
 # @app.route('/gptdemo', methods=['GET', 'POST'])
 # def gptdemo():
 #     ''' handle a get request by sending a form 
