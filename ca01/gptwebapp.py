@@ -42,6 +42,7 @@ def index():
             <a href="{url_for('team')}">Team Page</a>
             <a href="{url_for('about')}">About Page</a>
             <a href="{url_for('ming')}">Ming-Shih</a>
+            <a href="{url_for('xiaoran')}">Xiaoran</a>
         </div>
     '''
 
@@ -56,10 +57,21 @@ def team():
         <a href="{url_for('about')}">About Page</a>
         <a href="{url_for('team')}">Team Page</a>
         <a href="{url_for('ming')}">Ming-Shih</a>
+        <a href="{url_for('xiaoran')}">Xiaoran</a>
     </div>
     '''
     return f'''
     {nav_bar}
+    <div class="container">
+    <h1>Xiaoran</h2>
+    <ol>
+        <ul>Major: Computer Science</ul>
+        <ul>Class standing: first-year master student</ul>
+        <ul>Hometown: Beijing, China</ul>
+        <ul>Role: Software Development and Emotional Support Engineer</ul>
+        <ul>Fun fact: I was in a plane accident at the age of 12!</ul>
+    </ol>
+    </div>
     '''
 @app.route('/about')
 def about():
@@ -72,10 +84,12 @@ def about():
         <a href="{url_for('about')}">About Page</a> 
         <a href="{url_for('team')}">Team Page</a>
         <a href="{url_for('ming')}">Ming-Shih</a>
+        <a href="{url_for('xiaoran')}">Xiaoran</a>
     </div>
     '''
     return f'''
     {nav_bar}
+
     '''
 @app.route('/ming', methods=['GET', 'POST'])
 def ming():
@@ -89,6 +103,7 @@ def ming():
         <a href="{url_for('about')}">About Page</a> 
         <a href="{url_for('team')}">Team Page</a>
         <a href="{url_for('ming')}">Ming-Shih</a>
+        <a href="{url_for('xiaoran')}">Xiaoran</a>
     </div>
     '''
     if request.method == 'POST':
@@ -111,6 +126,43 @@ def ming():
                 <p><input class="submit" type=submit value="get response"><p/>
             </form>
         <div/>
+        '''
+    
+@app.route('/xiaoran', methods=['GET', 'POST'])
+def xiaoran():
+    
+    nav_bar=f'''
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
+    </head>
+    <div class="nav-bar">
+        <a href="{url_for('index')}">Home</a>
+        <a href="{url_for('about')}">About Page</a> 
+        <a href="{url_for('team')}">Team Page</a>
+        <a href="{url_for('ming')}">Ming-Shih</a>
+        <a href="{url_for('xiaoran')}">Xiaoran</a>
+    </div>
+    '''
+    if request.method == 'POST':
+        date = request.form['date']
+        answer = gptAPI.get_celebrate(date)
+        return f'''
+        {nav_bar}
+        <div class="answer">
+            <h2>{answer}<h2/>
+        </div>
+        '''
+    else:
+        return f'''
+        {nav_bar}
+        <div class="container">
+            <h1>Xiaoran Liu</h1>
+            <h2>What day is celebrated on </h2>
+            <form method="post">
+                <textarea name="date"></textarea>
+                <p><input type=submit value="get response">
+            </form>
+        </div>
         '''
         
 # @app.route('/gptdemo', methods=['GET', 'POST'])

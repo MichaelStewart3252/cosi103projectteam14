@@ -72,6 +72,12 @@ class GPT():
         completion = self.result(self, prompt)
         response = completion.choices[0].text
         return response 
+    #Xiaoran's prompt of getting what day is it today!
+    def get_celebrate(self, date):
+        prompt = f'What day is celebrated on {date}?'
+        completion = self.result(self, prompt)
+        response = completion.choices[0].text
+        return response
         
 if __name__=='__main__':
     '''
