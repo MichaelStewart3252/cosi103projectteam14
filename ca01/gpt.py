@@ -53,15 +53,7 @@ class GPT():
     def recipe(self,course):
         ''' Generate a GPT response '''
         prompt = 'genrate a recipe for ' + course
-        completion = openai.Completion.create(
-            engine=self.model_engine,
-            prompt=prompt,
-            max_tokens=1024,
-            n=1,
-            stop=None,
-            temperature=0.8,
-        )
-
+        completion = self.result(self, prompt)
         response = completion.choices[0].text
         return response 
     
@@ -72,6 +64,7 @@ class GPT():
         completion = self.result(self, prompt)
         response = completion.choices[0].text
         return response 
+    
     #Xiaoran's prompt of getting what day is it today!
     def get_celebrate(self, date):
         prompt = f'What day is celebrated on {date}?'
