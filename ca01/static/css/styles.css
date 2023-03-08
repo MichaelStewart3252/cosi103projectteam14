@@ -1,0 +1,34 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.submit{
+    background-color: transparent;
+    border: solid 1px black;
+    border-radius: 4px;
+    height: 30px;
+    width: 110px;
+}
+.submit:hover{
+    background-color: rgba(218, 218, 218, 0.8);
+    cursor: pointer;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.answer{
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    width: 80%;
+    align-items: center;
+}
+.answer > h2{
+    font-weight: 100;
+}

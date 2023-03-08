@@ -50,17 +50,29 @@ def ming():
         prompt = request.form['prompt']
         answer = gptAPI.get_tools_for_recipe(prompt)
         return f'''
-        Ming-Shih Wang'''
+        <head>
+            <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
+        </head>
+        <div class="answer">
+            <h2>{answer}<h2/>
+        </div>
+        '''
     else:
         return '''
-        <h1>Ming-Shih</h1>
-        <h2>Enter the course you're cooking and recieve a list of tools</h2>
-        Enter your query below
-        <form method="post">
-            <textarea name="prompt"></textarea>
-            <p><input type=submit value="get response">
-        </form>
+        <head>
+            <link rel= "stylesheet" type= "text/css" href= "static/css/styles.css">
+        </head>
+        <div class="container">
+            <h1>Ming-Shih</h1>
+            <h2>Enter the course you're cooking and recieve a list of tools you'll need</h2>
+   
+            <form class="form" method="post">
+                <textarea name="prompt"></textarea>
+                <p><input class="submit" type=submit value="get response"><p/>
+            </form>
+        <div/>
         '''
+        
 @app.route('/gptdemo', methods=['GET', 'POST'])
 def gptdemo():
     ''' handle a get request by sending a form 
