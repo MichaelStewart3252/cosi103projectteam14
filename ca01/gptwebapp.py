@@ -116,7 +116,7 @@ def xiaoran():
             <h2>What day is celebrated on </h2>
             <form method="post">
                 <textarea name="date"></textarea>
-                <p><input type=submit value="get response">
+                <p><input type=submit value="get response"></p>
             </form>
         </div>
         '''
