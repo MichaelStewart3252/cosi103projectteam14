@@ -63,3 +63,6 @@ a:hover{
 .answer > h2{
     font-weight: 100;
 }
+.item{
+    width: 500px;
+}

@@ -55,25 +55,26 @@ def team():
     return f'''
     {nav_bar}
     <div class="container">
-    <div class="item">
-        <h1>Xiaoran</h2>
-        <ul>
-            <li>Major: Computer Science</li>
-            <li>Class standing: first-year master student</li>
-            <li>Hometown: Beijing, China</li>
-            <li>Role: Software Development and Emotional Support Engineer</li>
-            <li>Fun fact: I was in a plane accident at the age of 12!</li>
-        </ul>
-    </div>
-    <div class="item">
-        <h1>Harry</h2>
-        <ul>
-            <li>Major: Computer Science & Anthropology</li>
-            <li>Class standing: sophomore</li>
-            <li>Hometown: Beijing, China</li>
-            <li>Role: Software Development</li>
-            <li>Fun fact: I love the color yellow, yea...</li>
-        </ul>
+        <div class="item">
+            <h1>Xiaoran</h2>
+            <ul>
+                <li>Major: Computer Science</li>
+                <li>Class standing: first-year master student</li>
+                <li>Hometown: Beijing, China</li>
+                <li>Role: Software Development and Emotional Support Engineer</li>
+                <li>Fun fact: I was in a plane accident at the age of 12!</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h1>Harry</h2>
+            <ul>
+                <li>Major: Computer Science & Anthropology</li>
+                <li>Class standing: sophomore</li>
+                <li>Hometown: Beijing, China</li>
+                <li>Role: Software Development</li>
+                <li>Fun fact: I love the color yellow, yea...</li>
+            </ul>
+        </div>
     </div>
     '''
 @app.route('/about')
