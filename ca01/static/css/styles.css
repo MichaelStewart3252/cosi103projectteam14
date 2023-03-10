@@ -9,11 +9,14 @@ a{
     font-size: 20px;
     font-weight: 100;
     text-decoration: none;
-    color: black;
-    opacity: 0.5;
+    color: rgba(0, 0, 0, 0.5);
+}
+.main{
+    display: flex;
+    align-items: center;
 }
 a:hover{
-    opacity: 1;
+    color: black;
 }
 .container{
     width: 100%;

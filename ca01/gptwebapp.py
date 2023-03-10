@@ -48,7 +48,10 @@ nav_bar=f'''
 def index():
     ''' display a link to the general query page '''
     print('processing / route')
-    return nav_bar
+    return f'''
+    {nav_bar}
+    <div class="container"><h1>Welcome to Team 14's project!</h1></div>
+    '''
 
 @app.route('/team')
 def team():
@@ -75,6 +78,16 @@ def team():
                 <li>Fun fact: I love the color yellow, yea...</li>
             </ul>
         </div>
+        <div class="item">
+            <h1>Ming</h2>
+            <ul>
+                <li>Major: Computer Science & Applied Mathematics</li>
+                <li>Class standing: sophomore</li>
+                <li>Hometown: Taiwan</li>
+                <li>Role: Created the nav bar for the website and styled the website a bit</li>
+                <li>Fun fact: I love basketball, and I don't think it's a "fun" fact Xiaoran LOL</li>
+            </ul>
+        </div>
     </div>
     '''
 @app.route('/about')
@@ -82,6 +95,7 @@ def about():
     return f'''
     {nav_bar}
     <div class="aboutContainer">
+        <h1>What does our program do?</h1>
         <div class="item">
             <h2>Ming</h2>
             <p>My program generates a GPT response that tells the user what they should get to complete the course they are cooking.</p>
