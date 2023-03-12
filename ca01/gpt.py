@@ -45,7 +45,7 @@ class GPT():
         return completion
     
     def getResponse(self,prompt):
-        ''' template to generate a GPT response '''
+        ''' Harry - template to generate a GPT response '''
         completion = self.result(self,prompt)
         response = completion.choices[0].text
         return response
