@@ -182,6 +182,29 @@ def harry():
         </div>
         '''
     
+    @app.route('/eric', methods = ['GET', 'POST'])
+    def eric():
+        if request.method == 'POST':
+            prompt = request.form['prompt']
+            answer = gptAPI.recipe(prompt)
+            return f'''
+            {nav_bar}
+            <div class="answer">
+                <h2>{answer}</h2>
+            </div>
+            '''
+        else:
+            return f'''
+            {nav_bar}
+            <div class="container">
+            <h1>Eric Hurchey</h1>
+            <h2>Enter the president you're wanting to know the birthday for</h2>
+            <form class="form" method="post">
+                <textarea name="prompt"></textarea>
+                <p><input class="submit" type=submit value="get response"><p/>
+            </form>
+        </div>
+        '''
 
 # @app.route('/gptdemo', methods=['GET', 'POST'])
 # def gptdemo():

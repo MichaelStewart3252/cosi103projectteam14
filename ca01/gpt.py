@@ -72,6 +72,13 @@ class GPT():
         response = completion.choices[0].text
         return response
         
+    def get_birthday_of_president(day, president):
+        '''Eric'''
+        prompt = "What is the birhday of " + president + " ?"
+        completion = day.result(day, prompt)
+        response = completion.choices[0].text
+        return response
+
 if __name__=='__main__':
     '''
     '''
