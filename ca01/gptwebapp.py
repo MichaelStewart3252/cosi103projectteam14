@@ -119,6 +119,10 @@ def about():
             <h2>Harry</h2>
             <p>My function provides a recipe for the course my user is looking fo. Eat well!</p>
         </div>
+        <div class="item">
+            <h2>Eric</h2>
+            <p>My program asks the user to enter a president of their choice and it will return the birthday of that president</p>
+        </div>
     </div>
     '''
 @app.route('/ming', methods=['GET', 'POST'])
