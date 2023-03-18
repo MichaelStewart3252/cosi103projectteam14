@@ -41,6 +41,7 @@ nav_bar=f'''
         <a href="/ming">Ming-Shih</a>
         <a href="/xiaoran">Xiaoran</a>
         <a href="/harry">Harry</a>
+        <a href="/eric">Eric</a>
     </div>
     '''
 
@@ -86,6 +87,16 @@ def team():
                 <li>Hometown: Taiwan</li>
                 <li>Role: Created the nav bar for the website and styled the website a bit</li>
                 <li>Fun fact: I love basketball, and I don't think it's a "fun" fact Xiaoran LOL</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h1>Eric</h2>
+            <ul>
+                <li>Major: Computer Science</li>
+                <li>Class standing: sophomore</li>
+                <li>Hometown: Staten Island, New York</li>
+                <li>Role: Software Development</li>
+                <li>Fun fact: I love to play basketball and I'm a huge Knicks fan!</li>
             </ul>
         </div>
     </div>
@@ -182,21 +193,21 @@ def harry():
         </div>
         '''
     
-    @app.route('/eric', methods = ['GET', 'POST'])
-    def eric():
-        if request.method == 'POST':
-            prompt = request.form['prompt']
-            answer = gptAPI.recipe(prompt)
-            return f'''
-            {nav_bar}
-            <div class="answer">
-                <h2>{answer}</h2>
-            </div>
-            '''
-        else:
-            return f'''
-            {nav_bar}
-            <div class="container">
+@app.route('/eric', methods = ['GET', 'POST'])
+def eric():
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.get_birthday_of_president(prompt)
+        return f'''
+        {nav_bar}
+        <div class="answer">
+            <h2>{answer}</h2>
+        </div>
+        '''
+    else:
+        return f'''
+        {nav_bar}
+        <div class="container">
             <h1>Eric Hurchey</h1>
             <h2>Enter the president you're wanting to know the birthday for</h2>
             <form class="form" method="post">
