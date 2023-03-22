@@ -1,3 +1,9 @@
+######################################################################################################################################################################
+'''
+    Description from mastery app
+'''
+######################################################################################################################################################################
+
 # create a Python class Transaction in a new file transaction.py which will store financial transactions with the fields. 
 # It should have an __init__ method where you pass in the filename for the database to be used (e.g. tracker.db) 
 # and each transaction should have the following fields stored in a SQL table called transactions.
@@ -36,7 +42,8 @@ class Transaction():
                     (item num, amount num, category text, date text, description text)''',())
         
     def runQuery(self,query,tuple):
-        ''' return all of the transactions as a list of dicts.'''
+        ''' return all of the transactions
+          as a list of dicts.'''
         con = sqlite3.connect(filename)
         cur = con.cursor() 
         cur.execute(query,tuple)
