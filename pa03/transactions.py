@@ -30,8 +30,8 @@ import sqlite3
 def toDict(t):
     ''' t is a tuple (rowid, item, amount, category, date, description)'''
     print('t='+str(t))
-    todo = {'rowid':t[0], 'item':t[1], 'amount':t[2], 'category':t[3], 'date':t[4], 'description':t[5]}
-    return todo
+    transaction = {'rowid':t[0], 'item':t[1], 'amount':t[2], 'category':t[3], 'date':t[4], 'description':t[5]}
+    return transaction
 
 # Need more functions
 class Transaction():
@@ -40,7 +40,7 @@ class Transaction():
         self.filename = filename
         self.runQuery('''CREATE TABLE IF NOT EXISTS transactions
                     (item num, amount num, category text, date text, description text)''',())
-        
+     
     def runQuery(self,query,tuple):
         ''' return all of the transactions
           as a list of dicts.'''
@@ -51,4 +51,19 @@ class Transaction():
         con.commit()
         con.close()
         return [toDict(t) for t in tuples]
+    
+    def selectAll(self):
+        ''' return all the transactions as a list of dicts.'''
+        return self.runQuery("SELECT rowid,* from transaction",())
 
+    def add(self,item):
+        ''' create a transaction item and add it to the transaction table '''
+        return self.runQuery("INSERT INTO transaction VALUES(?,?,?,?,?)",(item['item'],item['amount'],item['category'],item['date'],item['description']))
+
+    def delete(self,rowid):
+        ''' delete a transaction item '''
+        return self.runQuery("DELETE FROM transaction WHERE rowid=(?)",(rowid,))
+
+    def setComplete(self,rowid):
+        ''' mark a todo item as completed '''
+        return self.runQuery("UPDATE todo SET completed=1 WHERE rowid=(?)",(rowid,))
