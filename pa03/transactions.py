@@ -36,15 +36,15 @@ def toDict(t):
 # Need more functions
 class Transaction():
     global filename
-    def __init__(self, filename) -> None:
-        self.filename = filename
+    def __init__(self, file) -> None:
+        self.filename = file
         self.runQuery('''CREATE TABLE IF NOT EXISTS transactions
                     (amount num, category text, date text, description text)''',())
      
     def runQuery(self,query,tuple):
         ''' return all of the transactions
           as a list of dicts.'''
-        con = sqlite3.connect(filename)
+        con = sqlite3.connect(self.filename)
         cur = con.cursor() 
         cur.execute(query,tuple)
         tuples = cur.fetchall() 
@@ -54,32 +54,31 @@ class Transaction():
     
     def selectAll(self):
         ''' return all the transactions as a list of dicts.'''
-        return self.runQuery("SELECT rowid,* from transaction",())
+        return self.runQuery("SELECT rowid,* from transactions",())
 
     def add(self,item):
         ''' create a transaction item and add it to the transaction table '''
-        return self.runQuery("INSERT INTO transaction VALUES(?,?,?,?,?)",(item['item'],item['amount'],item['category'],item['date'],item['description']))
+        return self.runQuery("INSERT INTO transactions VALUES(?,?,?,?)",(item['amount'],item['category'],item['date'],item['description']))
 
     def delete(self,rowid):
         ''' delete a transaction item '''
-        return self.runQuery("DELETE FROM transaction WHERE rowid=(?)",(rowid,))
-
-    def selectDate(self,date):
-        ''' return all of the transactions of specifc date.'''
-        return self.runQuery("SELECT rowid,* from transaction where date=(?)",(date,))
+        return self.runQuery("DELETE FROM transactions WHERE rowid=(?)",(rowid,))
 
     def selectCategory(self,category):
         ''' return all of the transactions of specifc date.'''
-        return self.runQuery("SELECT rowid,* from transaction where category=(?)",(category,))
+        return self.runQuery("SELECT rowid,* FROM transactions WHERE category=(?)",(category,))
     
-    # Need more functions
+    def selectDate(self,date):
+        ''' return all of the transactions of specifc date.'''
+        pattern = date + '-__-' + '____'
+        return self.runQuery("SELECT rowid,* FROM transactions WHERE date LIKE (?)",(pattern,))
+
     def selectMonth(self,month):
-        ''' return all of the transactions of specifc date.'''
-        date = *** + month +  *****
-        return self.runQuery("SELECT rowid,* from transaction where date=(?)",(date,))
+        ''' return all of the transactions of specifc month.'''
+        pattern = '__-' + month + '-____'
+        return self.runQuery("SELECT rowid,* FROM transactions WHERE date LIKE (?)",(pattern,))
     
-    # Need more functions
     def selectYear(self,year):
-        ''' return all of the transactions of specifc date.'''
-        date = *** + year +  *****
-        return self.runQuery("SELECT rowid,* from transaction where date=(?)",(date,))
+        ''' return all of the transactions of specifc year.'''
+        pattern = '__' + '-__-' + year
+        return self.runQuery("SELECT rowid,* FROM transactions WHERE date LIKE (?)",(pattern,))

@@ -66,7 +66,7 @@ def print_transactions(transactions):
 # Completed
 def process_args(arglist):
     ''' examine args and make appropriate calls to Transaction'''
-    transaction = Transaction()
+    transaction = Transaction('test.db')
     if arglist==[]:
         print_usage()
     elif arglist[0]=="show":
