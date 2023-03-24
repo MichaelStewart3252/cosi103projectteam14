@@ -47,9 +47,9 @@ class Transaction():
         con = sqlite3.connect(filename)
         cur = con.cursor() 
         cur.execute(query,tuple)
-        tuples = cur.fetchall()
-        con.commit()
-        con.close()
+        tuples = cur.fetchall() 
+        con.commit() 
+        con.close() 
         return [toDict(t) for t in tuples]
     
     def selectAll(self):

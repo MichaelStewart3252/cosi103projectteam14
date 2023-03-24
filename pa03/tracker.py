@@ -37,65 +37,78 @@ import sys
 # Completed
 def print_usage():
     ''' print an explanation of how to use this command '''
-    print('''usage t = "transactions", [argument]:
+    print('''usage, --[input]--:
             0. quit
-            1. show_t
-            2. add_t
-            3. delete_t
-            4. sum_t [date]
-            5. sum_t [month]
-            6. sum_t [year]
-            7. sum_t [catagories]
+            1. show
+            2. add [amount] [category] [dd-mm-yyyy] [description]
+            3. delete [transaction ID]
+            4. sum_d [dd]
+            5. sum_m [mm]
+            6. sum_y [yyyy]
+            7. sum [catagories]
             8. print_usage
             '''
             )
 
-# Need modication 
-def print_todos(todos):
+# Completed
+def print_transactions(transactions):
     ''' print the transactions '''
-    if len(todos)==0:
+    if len(transactions)==0:
         print('no tasks to print')
         return
     print('\n')
-    print("%-10s %-10s %-30s %-10s"%('item #','title','desc','completed'))
+    print("%-10s %-10s %-10s %-10s %-30s"%('item #','amount','category','date', 'description'))
     print('-'*40)
-    for item in todos:
-        values = tuple(item.values()) #(rowid,title,desc,completed)
-        print("%-10s %-10s %-30s %2d"%values)
+    for item in transactions:
+        values = tuple(item.values()) #(item #, amount, category, date, description)
+        print("%-10s %-10s %-10s %-10s %-30s"%values) 
 
-# Need modication 
+# Completed
 def process_args(arglist):
-    ''' examine args and make appropriate calls to TodoList'''
+    ''' examine args and make appropriate calls to Transaction'''
     transaction = Transaction()
     if arglist==[]:
         print_usage()
     elif arglist[0]=="show":
-        print_todos(todolist.selectActive())
-    elif arglist[0]=="showall":
-        print_todos(todos = todolist.selectAll())
-    elif arglist[0]=="showcomplete":
-        print_todos(todolist.selectCompleted())
+        print_transactions(transaction.selectAll())
     elif arglist[0]=='add':
-        if len(arglist)!=3:
+        if len(arglist)!=5:
             print_usage()
         else:
-            todo = {'title':arglist[1],'desc':arglist[2],'completed':0}
-            todolist.add(todo)
-    elif arglist[0]=='complete':
-        if len(arglist)!= 2:
-            print_usage()
-        else:
-            todolist.setComplete(arglist[1])
+            t = {'amount':arglist[1],'category':arglist[2],'date':arglist[3], 'description':arglist[4]}
+            transaction.add(t)
     elif arglist[0]=='delete':
         if len(arglist)!= 2:
             print_usage()
         else:
-            todolist.delete(arglist[1])
+            transaction.delete(arglist[1])
+    elif arglist[0]=='sum_d':
+        if len(arglist)!= 2:
+            print_usage()
+        else:
+            print_transactions(transaction.selectDay(arglist[1]))
+    elif arglist[0]=='sum_m':
+        if len(arglist)!= 2:
+            print_usage()
+        else:
+            print_transactions(transaction.selectMonth(arglist[1]))
+    elif arglist[0]=='sum_y':
+        if len(arglist)!= 2:
+            print_usage()
+        else:
+            print_transactions(transaction.selectYear(arglist[1]))
+    elif arglist[0]=='sum':
+        if len(arglist)!= 2:
+            print_usage()
+        else:
+            print_transactions(transaction.selectCategory(arglist[1]))
+    elif arglist[0]=='quit':
+        sys.exit()
     else:
         print(arglist,"is not implemented")
         print_usage()
 
-# Need modication 
+# completed 
 def toplevel():
     ''' read the command args and process them'''
     if len(sys.argv)==1:
@@ -106,8 +119,8 @@ def toplevel():
         while args!=['']:
             args = input("command> ").split(' ')
             if args[0]=='add':
-                # join everyting after the name as a string
-                args = ['add',args[1]," ".join(args[2:])]
+                # join everyting after the date as a string
+                args = ['add',args[1],args[2],args[3], " ".join(args[2:])]
             process_args(args)
             print('-'*40+'\n'*3)
     else:
