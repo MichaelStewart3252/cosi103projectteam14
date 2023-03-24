@@ -30,7 +30,7 @@ import sqlite3
 def toDict(t):
     ''' t is a tuple (rowid, item, amount, category, date, description)'''
     print('t='+str(t))
-    transaction = {'rowid':t[0], 'item':t[1], 'amount':t[2], 'category':t[3], 'date':t[4], 'description':t[5]}
+    transaction = {'rowid':t[0], 'amount':t[1], 'category':t[2], 'date':t[3], 'description':t[4]}
     return transaction
 
 # Need more functions
@@ -39,7 +39,7 @@ class Transaction():
     def __init__(self, filename) -> None:
         self.filename = filename
         self.runQuery('''CREATE TABLE IF NOT EXISTS transactions
-                    (item num, amount num, category text, date text, description text)''',())
+                    (amount num, category text, date text, description text)''',())
      
     def runQuery(self,query,tuple):
         ''' return all of the transactions
@@ -64,6 +64,22 @@ class Transaction():
         ''' delete a transaction item '''
         return self.runQuery("DELETE FROM transaction WHERE rowid=(?)",(rowid,))
 
-    def setComplete(self,rowid):
-        ''' mark a todo item as completed '''
-        return self.runQuery("UPDATE todo SET completed=1 WHERE rowid=(?)",(rowid,))
+    def selectDate(self,date):
+        ''' return all of the transactions of specifc date.'''
+        return self.runQuery("SELECT rowid,* from transaction where date=(?)",(date,))
+
+    def selectCategory(self,category):
+        ''' return all of the transactions of specifc date.'''
+        return self.runQuery("SELECT rowid,* from transaction where category=(?)",(category,))
+    
+    # Need more functions
+    def selectMonth(self,month):
+        ''' return all of the transactions of specifc date.'''
+        date = *** + month +  *****
+        return self.runQuery("SELECT rowid,* from transaction where date=(?)",(date,))
+    
+    # Need more functions
+    def selectYear(self,year):
+        ''' return all of the transactions of specifc date.'''
+        date = *** + year +  *****
+        return self.runQuery("SELECT rowid,* from transaction where date=(?)",(date,))
