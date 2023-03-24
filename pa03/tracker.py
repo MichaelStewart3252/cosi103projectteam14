@@ -86,7 +86,7 @@ def process_args(arglist):
         if len(arglist)!= 2:
             print_usage()
         else:
-            print_transactions(transaction.selectDay(arglist[1]))
+            print_transactions(transaction.selectDate(arglist[1]))
     elif arglist[0]=='sum_m':
         if len(arglist)!= 2:
             print_usage()
