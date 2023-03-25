@@ -34,6 +34,8 @@
 from transactions import Transaction
 import sys
 
+DASH_NUM = 80 
+    
 # Completed
 def print_usage():
     ''' print an explanation of how to use this command '''
@@ -57,11 +59,11 @@ def print_transactions(transactions):
         print('no tasks to print')
         return
     print('\n')
-    print("%-10s %-10s %-10s %-10s %-30s"%('item #','amount','category','date', 'description'))
-    print('-'*40)
+    print("%-10s %-10s %-10s %-15s %-30s"%('item #','amount','category','date', 'description'))
+    print('-'*DASH_NUM)
     for item in transactions:
         values = tuple(item.values()) #(item #, amount, category, date, description)
-        print("%-10s %-10s %-10s %-10s %-30s"%values) 
+        print("%-10s %-10s %-10s %-15s %-30s"%values) 
 
 # Completed
 def process_args(arglist):
@@ -120,14 +122,14 @@ def toplevel():
             args = input("command> ").split(' ')
             if args[0]=='add':
                 # join everyting after the date as a string
-                args = ['add',args[1],args[2],args[3], " ".join(args[2:])]
+                args = ['add',args[1],args[2],args[3], " ".join(args[4:])]
             process_args(args)
-            print('-'*40+'\n'*3)
+            print('-'*DASH_NUM+'\n'*3)
     else:
         # read the args and process them
         args = sys.argv[1:]
         process_args(args)
-        print('-'*40+'\n'*3)
+        print('-'*DASH_NUM+'\n'*3)
 
     
 

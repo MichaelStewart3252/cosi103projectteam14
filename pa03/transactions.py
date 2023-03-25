@@ -29,7 +29,7 @@ import sqlite3
 # completed
 def toDict(t):
     ''' t is a tuple (rowid, item, amount, category, date, description)'''
-    print('t='+str(t))
+    # print('t='+str(t))
     transaction = {'rowid':t[0], 'amount':t[1], 'category':t[2], 'date':t[3], 'description':t[4]}
     return transaction
 
