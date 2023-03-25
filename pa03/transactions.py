@@ -7,7 +7,7 @@ and each transaction should have the following fields stored in a SQL table call
 'amount',
 'category',
 'date',
-'description
+'description'
 
 It should be similar to the Todolist ORM from Lesson 19 in class. It will allow the user to read and update the database as need.
 The transaction class should not do any printing!! 
