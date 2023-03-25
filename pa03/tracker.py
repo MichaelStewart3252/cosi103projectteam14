@@ -65,26 +65,6 @@ def process_args(arglist):
             print_usage()
         else:
             transaction.delete(arglist[1])
-    elif arglist[0]=='sum_d':
-        if len(arglist)!= 2:
-            print_usage()
-        else:
-            print_transactions(transaction.select_date(arglist[1]))
-    elif arglist[0]=='sum_m':
-        if len(arglist)!= 2:
-            print_usage()
-        else:
-            print_transactions(transaction.select_month(arglist[1]))
-    elif arglist[0]=='sum_y':
-        if len(arglist)!= 2:
-            print_usage()
-        else:
-            print_transactions(transaction.select_year(arglist[1]))
-    elif arglist[0]=='sum':
-        if len(arglist)!= 2:
-            print_usage()
-        else:
-            print_transactions(transaction.select_category(arglist[1]))
     elif arglist[0]=='quit':
         sys.exit()
     else:

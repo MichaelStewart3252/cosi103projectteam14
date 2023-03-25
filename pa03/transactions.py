@@ -55,17 +55,4 @@ class Transaction():
         ''' return all of the transactions of specifc date.'''
         return self.run_query("SELECT rowid,* FROM transactions WHERE category=(?)",(category,))
     
-    def select_date(self,date):
-        ''' return all of the transactions of specifc date.'''
-        pattern = date + '-__-' + '____'
-        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)",(pattern,))
 
-    def select_month(self,month):
-        ''' return all of the transactions of specifc month.'''
-        pattern = '__-' + month + '-____'
-        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)",(pattern,))
-    
-    def select_year(self,year):
-        ''' return all of the transactions of specifc year.'''
-        pattern = '__' + '-__-' + year
-        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)",(pattern,))
