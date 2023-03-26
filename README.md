@@ -8,5 +8,5 @@ Language: Python, HTML/CSS
 ## [PA03](pa03)
 We created a program that allows user to implement different amounts to be labeled under different categories to be put under the dates that are inputted with a description of their adding inquiry.
 
-Framwork: Flask
+Framwork: mySQL
 Language: Python

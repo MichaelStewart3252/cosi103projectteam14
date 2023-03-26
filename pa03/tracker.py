@@ -65,13 +65,13 @@ def process_args(arglist):
         else:
             transaction.delete(arglist[1])
     elif arglist[0] =="sum_d":
-        print_transactions(transaction.select_date(arglist[1]))
+        print_transactions(transaction.sum_by_day(arglist[1]))
     elif arglist[0] =="sum_m":
         print_transactions(transaction.sum_by_month(arglist[1]))
     elif arglist[0] =="sum_y":
         print_transactions(transaction.sum_by_year(arglist[1]))
     elif arglist[0] =="sum":
-        print_transactions(transaction.sum_by_cat(arglist[1]))
+        print_transactions(transaction.select_category(arglist[1]))
     elif arglist[0]=='quit':
         sys.exit()
     else:

@@ -52,17 +52,20 @@ class Transaction():
         return self.run_query("DELETE FROM transactions WHERE rowid=(?)",(rowid,))
 
     def select_category(self,category):
-        ''' return all of the transactions of specifc date.'''
+        ''' return all of the transactions of a specifc category.'''
         return self.run_query("SELECT rowid,* FROM transactions WHERE category=(?)",(category,))
     
+    def sum_by_day(self,day):
+        ''' returns all of the transcations of a specific day'''
+        return self.run_query("SELECT rowid,* FROM transactions WHERE day=(?)", (day,))
+
     def sum_by_month(self,month):
         ''' returns all of the transactions of a specific month written by Michael'''
-        return self.run_query("SELECT rowid, * FROM transactions WHERE category(?)", (month,))
+        return self.run_query("SELECT rowid,* FROM transactions WHERE month=(?)", (month,))
     
     def sum_by_year(self,year):
         ''' returns all of the transactions of a specific year written by Michael'''
-        return self.run_query("SELECT rowid, * FROM transactions WHERE categor(?)", (year,))
+        return self.run_query("SELECT rowid,* FROM transactions WHERE year=(?)", (year,))
     
-    def sum_by_cat(self, cat):
-        ''' returns all of the transactions summarized by category written by Michael'''
+    
 
