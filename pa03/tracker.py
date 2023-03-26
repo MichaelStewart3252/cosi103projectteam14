@@ -21,7 +21,9 @@ from transactions import Transaction
 DASH_NUM = 80 
 
 def print_usage():
-    ''' print an explanation of how to use this command '''
+    ''' print an explanation of how to use this command
+        @author Ming-Shih Wang
+    '''
     print('''usage:
             0. quit
             1. show
@@ -36,7 +38,9 @@ def print_usage():
             )
 
 def print_transactions(transactions):
-    ''' print the transactions '''
+    ''' print the transactions 
+        @author Ming-Shih Wang
+    '''
     if len(transactions)==0:
         print('no tasks to print')
         return
@@ -48,7 +52,9 @@ def print_transactions(transactions):
         print("%-10s %-10s %-10s %-15s %-30s"%values) 
 
 def process_args(arglist):
-    ''' examine args and make appropriate calls to Transaction'''
+    ''' examine args and make appropriate calls to Transaction
+        @author Ming-Shih Wang
+    '''
     transaction = Transaction('test.db')
     if arglist==[]:
         print_usage()
@@ -73,7 +79,9 @@ def process_args(arglist):
 
 # completed 
 def toplevel():
-    ''' read the command args and process them'''
+    ''' read the command args and process them
+        @author Ming-Shih Wang
+    '''
     if len(sys.argv)==1:
         # they didn't pass any arguments, 
         # so prompt for them in a loop
