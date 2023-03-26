@@ -40,32 +40,35 @@ class Transaction():
         return [to_dict(tuple) for tuple in tuples]
     
     def select_all(self):
-        ''' return all the transactions as a list of dicts.'''
+        ''' Harry - return all the transactions as a list of dicts.'''
         return self.run_query("SELECT rowid,* from transactions",())
 
     def add(self,item):
-        ''' create a transaction item and add it to the transaction table '''
+        ''' Harry - create a transaction item and add it to the transaction table '''
         return self.run_query("INSERT INTO transactions VALUES(?,?,?,?)",(item['amount'],item['category'],item['date'],item['description']))
 
     def delete(self,rowid):
-        ''' delete a transaction item '''
+        ''' Harry - delete a transaction item '''
         return self.run_query("DELETE FROM transactions WHERE rowid=(?)",(rowid,))
 
     def select_category(self,category):
-        ''' return all of the transactions of a specifc category.'''
+        ''' Harry - return all of the transactions of a specifc category.'''
         return self.run_query("SELECT rowid,* FROM transactions WHERE category=(?)",(category,))
     
-    def sum_by_day(self,day):
-        ''' returns all of the transcations of a specific day'''
-        return self.run_query("SELECT rowid,* FROM transactions WHERE day=(?)", (day,))
+    def sum_by_day(self,date):
+        ''' Harry - returns all of the transcations of a specific day'''
+        pattern =  '%' + date
+        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)", (pattern,))
 
     def sum_by_month(self,month):
         ''' returns all of the transactions of a specific month written by Michael'''
-        return self.run_query("SELECT rowid,* FROM transactions WHERE month=(?)", (month,))
+        pattern = '_____' + month + '___'
+        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)", (pattern,))
     
     def sum_by_year(self,year):
         ''' returns all of the transactions of a specific year written by Michael'''
-        return self.run_query("SELECT rowid,* FROM transactions WHERE year=(?)", (year,))
+        pattern =  year + '%'
+        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)", (pattern,))
     
     
 
