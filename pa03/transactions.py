@@ -27,7 +27,7 @@ class Transaction():
     def __init__(self, file) -> None:
         self.filename = file
         self.run_query('''CREATE TABLE IF NOT EXISTS transactions
-                    (amount num, category text, date text, description text)''',())
+                    (amount num, category text, month text, day text, year text, description text)''',())
      
     def run_query(self,query,tuple):
         ''' return all of the transactions as a list of dicts.'''
@@ -58,7 +58,7 @@ class Transaction():
     def sum_by_day(self,date):
         ''' Harry - returns all of the transcations of a specific day'''
         pattern =  '%' + date
-        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)", (pattern,))
+        return self.run_query("SELECT rowid,* FROM transactions WHERE day (?)", (pattern,))
 
     def sum_by_month(self,month):
         ''' returns all of the transactions of a specific month written by Michael'''
