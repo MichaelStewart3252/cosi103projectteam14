@@ -71,7 +71,7 @@ def process_args(arglist):
         else:
             transaction.delete(arglist[1])
     elif arglist[0] =="sum_d":
-        print_transactions(transaction.sum_by_day())
+        print_transactions(transaction.sum_by_day(arglist[1]))
     elif arglist[0] =="sum_m":
         print_transactions(transaction.sum_by_month(arglist[1]))
     elif arglist[0] =="sum_y":

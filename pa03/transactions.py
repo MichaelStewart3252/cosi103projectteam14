@@ -58,22 +58,19 @@ class Transaction():
 
     def select_category(self,category):
         ''' Harry - return all of the transactions of a specifc category.'''
-        return self.run_query("SELECT rowid,* FROM transactions WHERE category=(?)",(category,))
+        return self.run_query("SELECT rowid,* FROM transactions WHERE category=(?) ORDER BY ASC",(category,))
     
     def sum_by_day(self,date):
         ''' Harry - returns all of the transcations of a specific day'''
-        pattern =  date
-        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)", (pattern,))
+        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?) ORDER BY ASC", ("%" + date,))
 
     def sum_by_month(self,month):
         ''' returns all of the transactions of a specific month written by Michael'''
-        pattern = month + '___'
-        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)", (pattern,))
+        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?) ORDER BY ASC", ("_____" + month + "%",))
     
     def sum_by_year(self,year):
         ''' returns all of the transactions of a specific year written by Michael'''
-        pattern =  year + '%'
-        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)", (pattern,))
+        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?) ORDER BY ASC", (year + "%",))
     
     
 
