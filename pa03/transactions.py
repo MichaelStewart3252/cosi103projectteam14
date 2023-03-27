@@ -27,7 +27,7 @@ class Transaction():
     def __init__(self, file) -> None:
         self.filename = file
         self.run_query('''CREATE TABLE IF NOT EXISTS transactions
-                    (amount num, category text, month text, day text, year text, description text)''',())
+                    (amount num, category text, date text, description text)''',())
      
     def run_query(self,query,tuple):
         ''' return all of the transactions as a list of dicts.'''
