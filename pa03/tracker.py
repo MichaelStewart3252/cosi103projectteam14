@@ -21,7 +21,7 @@ DASH_NUM = 80
 
 def print_usage():
     ''' print an explanation of how to use this command 
-        @author Ming-Shih Wang
+        @author Eric
     '''
     print('''usage:
             0. quit

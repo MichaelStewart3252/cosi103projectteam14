@@ -21,7 +21,7 @@ import sqlite3
 # completed
 def to_dict(tran):
     ''' t is a tuple (rowid, item, amount, category, date, description)
-        @author Ming-Shih Wang
+        @author Eric
     '''
     # print('t='+str(t))
     transaction = {'rowid':tran[0], 'amount':tran[1], 'category':tran[2], 'date':tran[3], 'description':tran[4]}
