@@ -65,7 +65,7 @@ class Transaction():
     
     def sum_by_date(self):
         ''' Harry - returns all of the transcations of a specific day'''
-        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?) ORDER BY date ASC", (pattern,))
+        return self.run_query("SELECT rowid,* FROM transactions ORDER BY date ASC", ())
 
     def sum_by_month(self,month):
         ''' returns all of the transactions of a specific month written by Michael'''
