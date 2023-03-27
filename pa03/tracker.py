@@ -26,8 +26,8 @@ def print_usage():
             1. show
             2. add [amount] [category] [yyyy-mm-dd] [description]
             3. delete [transaction ID]
-            4. sum_d [dd]
-            5. sum_m [mm]
+            4. sum_d [yyyy-mm-dd]
+            5. sum_m [yyyy-mm]
             6. sum_y [yyyy]
             7. sum [catagories]
             8. print_usage
