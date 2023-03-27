@@ -27,8 +27,8 @@ def print_usage():
             2. add [amount] [category] [yyyy-mm-dd] [description]
             3. delete [transaction ID]
             4. sum_d
-            5. sum_m 
-            6. sum_y 
+            5. sum_m [mm]
+            6. sum_y [yyyy]
             7. sum [catagories]
             8. print_usage
             ''')
@@ -67,9 +67,9 @@ def process_args(arglist):
     elif arglist[0] =="sum_d":
         print_transactions(transaction.sum_by_day())
     elif arglist[0] =="sum_m":
-        print_transactions(transaction.sum_by_month())
+        print_transactions(transaction.sum_by_month(arglist[1]))
     elif arglist[0] =="sum_y":
-        print_transactions(transaction.sum_by_year())
+        print_transactions(transaction.sum_by_year(arglist[1]))
     elif arglist[0] =="sum":
         print_transactions(transaction.select_category(arglist[1]))
     elif arglist[0]=='quit':
