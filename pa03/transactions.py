@@ -57,12 +57,17 @@ class Transaction():
     
     def sum_by_day(self,date):
         ''' Harry - returns all of the transcations of a specific day'''
+<<<<<<< HEAD
         pattern =  '%' + date
         return self.run_query("SELECT rowid,* FROM transactions WHERE day (?)", (pattern,))
+=======
+        pattern =  date
+        return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)", (pattern,))
+>>>>>>> 4fde706681e3848d09075ba0543c37b375c34646
 
     def sum_by_month(self,month):
         ''' returns all of the transactions of a specific month written by Michael'''
-        pattern = '_____' + month + '___'
+        pattern = month + '___'
         return self.run_query("SELECT rowid,* FROM transactions WHERE date LIKE (?)", (pattern,))
     
     def sum_by_year(self,year):

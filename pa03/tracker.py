@@ -23,6 +23,7 @@ def print_usage():
     ''' print an explanation of how to use this command '''
     print('''usage:
             0. quit
+<<<<<<< HEAD
             1. show transactions (command: show)
             2. add transaction (command: add [amount] [category] [yyyy-mm-dd] [description])
             3. delete transaction (command: delete [transaction ID])
@@ -31,6 +32,16 @@ def print_usage():
             6. summarize transactions by year (command: sum_y [yyyy])
             7. summarize transactions by category (command: sum_cat [catagories])
             8. print this menu (command: print_usage)
+=======
+            1. show
+            2. add [amount] [category] [yyyy-mm-dd] [description]
+            3. delete [transaction ID]
+            4. sum_d
+            5. sum_m [mm]
+            6. sum_y [yyyy]
+            7. sum [catagories]
+            8. print_usage
+>>>>>>> 4fde706681e3848d09075ba0543c37b375c34646
             ''')
 
 def print_transactions(transactions):
@@ -65,7 +76,7 @@ def process_args(arglist):
         else:
             transaction.delete(arglist[1])
     elif arglist[0] =="sum_d":
-        print_transactions(transaction.sum_by_day(arglist[1]))
+        print_transactions(transaction.sum_by_day())
     elif arglist[0] =="sum_m":
         print_transactions(transaction.sum_by_month(arglist[1]))
     elif arglist[0] =="sum_y":
