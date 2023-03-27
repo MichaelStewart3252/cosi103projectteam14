@@ -51,7 +51,7 @@ def print_transactions(transactions):
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to Transaction
-        @author Ming-Shih Wang
+        @author Ming-Shih Wang, Michael
     '''
     transaction = Transaction('test.db')
     if arglist==[]:
