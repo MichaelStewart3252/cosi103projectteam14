@@ -1,6 +1,6 @@
 # Finance Tracker: SQL, pytest, and pylint
 
-This is a simple terminal finance tracker that allows user to store their transaction and analyze them, similar to a stock website.
+This is a simple terminal finance tracker that allows user to store their transaction and analyze them, similar to a budgeting app.
 
 ## Running pylint
 ### tracker.py
@@ -49,115 +49,14 @@ test_transaction.py .......                                                     
 ```
 usage:
             0. quit
-            1. show transactions (command: show)
-            2. add transaction (command: add [amount] [category] [yyyy-mm-dd] [description])
-            3. delete transaction (command: delete [transaction ID])
-            4. summarize transaction by day (command: sum_d [dd])
-            5. summarize transaction by month (command: money sum_m [mm])
-            6. summarize transactions by year (command: sum_y [yyyy])
-            7. summarize transactions by category (command: sum_cat [catagories])
-            8. print this menu (command: print_usage)
-            
-command> add transaction 10 test 2023-03-26 test
---------------------------------------------------------------------------------
-
-
-
-command> add transaction 10 test 2023-03-26 test1
---------------------------------------------------------------------------------
-
-
-
-command> add transaction 10 test 2023-03-25 test2
---------------------------------------------------------------------------------
-
-
-
-command> show
-
-
-item #     amount     category   date            description                   
---------------------------------------------------------------------------------
-1          transaction 10         test            2023-03-26 test               
-2          transaction 10         test            2023-03-26 test1              
-3          transaction 10         test            2023-03-25 test2              
---------------------------------------------------------------------------------
-
-
-
-command> sum_d
-
-
-item #     amount     category   date            description                   
---------------------------------------------------------------------------------
-1          transaction 10         test            2023-03-26 test               
-2          transaction 10         test            2023-03-26 test1              
-3          transaction 10         test            2023-03-25 test2              
---------------------------------------------------------------------------------
-
-
-
-command> add transaction 10 test 2023-04-26 test        
---------------------------------------------------------------------------------
-
-
-
-command> show  
-
-
-item #     amount     category   date            description                   
---------------------------------------------------------------------------------
-1          transaction 10         test            2023-03-26 test               
-2          transaction 10         test            2023-03-26 test1              
-3          transaction 10         test            2023-03-25 test2              
-4          transaction 10         test            2023-04-26 test               
---------------------------------------------------------------------------------
-
-
-
-command> sum_m 03
-no tasks to print
---------------------------------------------------------------------------------
-
-
-
-command> delete 1
---------------------------------------------------------------------------------
-
-
-
-command> show  
-
-
-item #     amount     category   date            description                   
---------------------------------------------------------------------------------
-2          transaction 10         test            2023-03-26 test1              
-3          transaction 10         test            2023-03-25 test2              
-4          transaction 10         test            2023-04-26 test               
---------------------------------------------------------------------------------
-
-
-
-command> delete 2
---------------------------------------------------------------------------------
-
-
-
-command> delete 3
---------------------------------------------------------------------------------
-
-
-minstonewang@minstones-air pa03 % /usr/bin/python3 /Users/minstonewang/Desktop/SPRING_2023/COSI_103/team/cosi103projectteam14/pa03/tracker.py
-usage:
-            0. quit
-            1. show transactions (command: show)
-            2. add transaction (command: add [amount] [category] [yyyy-mm-dd] [description])
-            3. delete transaction (command: delete [transaction ID])
-            4. summarize transaction by day (command: sum_d [dd])
-            5. summarize transaction by month (command: money sum_m [mm])
-            6. summarize transactions by year (command: sum_y [yyyy])
-            7. summarize transactions by category (command: sum_cat [catagories])
-            8. print this menu (command: print_usage)
+            1. show
+            2. add [amount] [category] [yyyy-mm-dd] [description]
+            3. delete [transaction ID]
+            4. sum_d [dd]
+            5. sum_m [mm]
+            6. sum_y [yyyy]
+            7. sum_cat [catagories]
+            8. print_usage
             
 command> add 10 test 2023-01-01 test
 --------------------------------------------------------------------------------

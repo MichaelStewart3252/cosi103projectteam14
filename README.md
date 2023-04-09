@@ -6,7 +6,8 @@ We created a website that allows user to generate responses with the ChatGPT API
 Framework: Flask
 Language: Python, HTML/CSS
 ## [PA03](pa03)
-We created a program that allows user to implement different amounts to be labeled under different categories to be put under the dates that are inputted with a description of their adding inquiry.
+We created a finance tracker that allows user to store their transaction and analyze them. Users can create transactions and label them under different categories and users have the option to sort the transactions with the dates, month, or year.
 
-Framwork: mySQL
-Language: Python
+Framwork: pytest
+Libraries: sqlite3
+Language: Python, SQL

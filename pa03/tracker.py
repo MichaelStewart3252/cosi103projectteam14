@@ -28,7 +28,7 @@ def print_usage():
             1. show
             2. add [amount] [category] [yyyy-mm-dd] [description]
             3. delete [transaction ID]
-            4. sum_d [dd]
+            4. sum_d
             5. sum_m [mm]
             6. sum_y [yyyy]
             7. sum_cat [catagories]
@@ -51,7 +51,7 @@ def print_transactions(transactions):
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to Transaction
-        @author Ming-Shih Wang
+        @author Ming-Shih Wang, Michael
     '''
     transaction = Transaction('test.db')
     if arglist==[]:
