@@ -1,1 +1,4 @@
 *.db
+package-lock*
+node_modules
+__pycache__
