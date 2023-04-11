@@ -3,12 +3,16 @@
 </pre>
 <form method="post" action="/transaction/updateTransaction">
     <input type="hidden" name="itemId" value="<%= item._id %>">
+    description: 
     <input type="text" name="description" value="<%= item.description %>" placeholder="description">
     <br>
+    amount: 
     <input type="number" name="amount" placeholder="amount" value="<%= item.amount %>">
     <br>
+    category: 
     <input type="text" name="category" placeholder="category" value="<%= item.category %>">
     <br>
+    date: 
     <input type="datetime" name="date" placeholder="mm/dd/yyyy" value="<%= item.date %>">
     <br>
     <input type="submit" value="store">
