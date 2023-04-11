@@ -1,35 +1,40 @@
-
-<table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>description</th>
-        <th>amount</th>
-        <th>category</th>
-        <th>date</th>
-      </tr>
-    </thead>
-    <tbody>
+<% if(updated) { %>
+  <table class="table table-bordered table-striped">
+      <thead>
         <tr>
-          <td><%= item.description %></td>
-          <td><%= item.amount %></td>
-          <td><%= item.category %></td>
-          <td><%= item.date %></td>
+          <th>description</th>
+          <th>amount</th>
+          <th>category</th>
+          <th>date</th>
         </tr>
-    </tbody>
-</table>
-<form method="post" action="/transaction/updateTransaction">
-    <input type="hidden" name="itemId" value="<%= item._id %>">
-    description: 
-    <input type="text" name="description" value="<%= item.description %>" placeholder="description">
-    <br>
-    amount: 
-    <input type="number" name="amount" placeholder="amount" value="<%= item.amount %>">
-    <br>
-    category: 
-    <input type="text" name="category" placeholder="category" value="<%= item.category %>">
-    <br>
-    date: 
-    <input type="datetime" name="date" placeholder="mm/dd/yyyy" value="<%= item.date %>">
-    <br>
-    <input type="submit" value="store">
-</form>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%= item.description %></td>
+            <td><%= item.amount %></td>
+            <td><%= item.category %></td>
+            <td><%= item.date %></td>
+          </tr>
+      </tbody>
+  </table>
+  <form method="POST" action="/transaction/updateTransaction">
+      <input type="hidden" name="itemId" value="<%= item._id %>">
+      description: 
+      <input type="text" name="description" value="<%= item.description %>" placeholder="description">
+      <br>
+      amount: 
+      <input type="number" name="amount" placeholder="amount" value="<%= item.amount %>">
+      <br>
+      category: 
+      <input type="text" name="category" placeholder="category" value="<%= item.category %>">
+      <br>
+      date: 
+      <input type="datetime" name="date" placeholder="mm/dd/yyyy" value="<%= item.date %>">
+      <br>
+      <input type="submit" value="store">
+  </form>
+<% }else {%>
+  <div>Transaction Updated!</div>
+  <form action="/transaction"></form>
+  <a href="/transaction">return</a>
+<% }%>

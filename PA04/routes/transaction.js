@@ -35,7 +35,7 @@ router.get('/transaction/',
 });
 
 
-router.get('/sortBy/', isLoggedIn, async (req, res, next) => {
+router.get('/sortBy', isLoggedIn, async (req, res, next) => {
   const show = req.query.show;
   let records = [];
   if (show === 'sortByCategory') {
@@ -84,16 +84,32 @@ router.get('/transaction/editTransaction/:itemId',
     const item = 
      await Transaction.findById(req.params.itemId);
     res.locals.item = item
+    res.locals.updated = true;
     res.render('editTransaction')
 });
 
 
-router.post('/transaction/updateTransaction/:itemId',
+router.post('/transaction/updateTransaction',
 isLoggedIn,
 async (req, res, next) => {
-    
-});
 
+  const {description, amount, category, date, itemId} = req.body;
+  const newDate = new Date(date).toLocaleDateString()
+  const updateData = {
+    description: description, 
+    amount: amount,
+    category: category,
+    date: new Date(newDate)
+  }
+
+  await Transaction.findByIdAndUpdate(itemId, updateData, { new: true })
+  .then(() => {
+    res.locals.updated = false;
+    console.log('item updated!')
+    res.render('editTransaction');
+  })
+
+});
 
 router.get('/transaction/byCategory',
   isLoggedIn,
