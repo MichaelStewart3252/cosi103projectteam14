@@ -3,3 +3,4 @@ package-lock*
 node_modules
 __pycache__
 .DS_Store
+secret.sh
