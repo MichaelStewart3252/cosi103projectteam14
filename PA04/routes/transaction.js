@@ -3,7 +3,6 @@
 */
 const express = require('express');
 const router = express.Router();
-const ToDoItem = require('../models/ToDoItem')
 const Transaction = require('../models/Transaction')
 const User = require('../models/User')
 
@@ -56,13 +55,14 @@ router.get('/sortBy/', isLoggedIn, async (req, res, next) => {
 router.post('/transaction',
   isLoggedIn,
   async (req, res, next) => {
-      const createdAt = new Date(req.body.createdAt).toLocaleDateString();
+      const date = new Date(req.body.date).toLocaleDateString();
       const transaction = new Transaction(
         {
           description: req.body.description,
           amount: req.body.amount,
           category: req.body.category,
-          createdAt: new Date(createdAt),
+          date: new Date(date),
+          createdAt: new Date(),
           userId: req.user._id
         })
       await transaction.save();
@@ -72,21 +72,26 @@ router.post('/transaction',
 router.get('/transaction/remove/:itemId',
   isLoggedIn,
   async (req, res, next) => {
-      
+    console.log("inside /transaction/remove/:itemId")
+    await Transaction.deleteOne({_id:req.params.itemId});
+    res.redirect('/transaction')
 });
 
-
-router.get('/transaction/edit/:itemId',
+router.get('/transaction/editTransaction/:itemId',
   isLoggedIn,
   async (req, res, next) => {
-     
+    console.log("inside /transaction/editTransaction/:itemId")
+    const item = 
+     await Transaction.findById(req.params.itemId);
+    res.locals.item = item
+    res.render('editTransaction')
 });
 
 
 router.post('/transaction/updateTransaction/:itemId',
-  isLoggedIn,
-  async (req, res, next) => {
-      
+isLoggedIn,
+async (req, res, next) => {
+    
 });
 
 
