@@ -1,6 +1,22 @@
-<pre>
-    <%= JSON.stringify(item,null,5) %>
-</pre>
+
+<table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>description</th>
+        <th>amount</th>
+        <th>category</th>
+        <th>date</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= item.description %></td>
+          <td><%= item.amount %></td>
+          <td><%= item.category %></td>
+          <td><%= item.date %></td>
+        </tr>
+    </tbody>
+</table>
 <form method="post" action="/transaction/updateTransaction">
     <input type="hidden" name="itemId" value="<%= item._id %>">
     description: 
