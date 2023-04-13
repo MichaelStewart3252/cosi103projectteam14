@@ -1,7 +1,9 @@
 
 
 <div class="row">
-      
+    <% if (authError) { %>
+        <h3><%= authError %></h3>
+    <% } %>
     <div class="col-sm-5">
         <h2>Login</h2>
         <form method="post" action="/login">

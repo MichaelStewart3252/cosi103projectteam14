@@ -57,6 +57,7 @@ router.use((req,res,next) => {
 
 
 router.get("/login", (req,res) => {
+  res.locals.authError = null
   res.render("pwlogin")
 })
 
@@ -71,17 +72,23 @@ router.post('/login',
     try {
       const {username,passphrase} = req.body
       const user = await User.findOne({username:username})
-      const isMatch = await bcrypt.compare(passphrase,user.passphrase );
 
-      if (isMatch) {
-        req.session.username = username //req.body
-        req.session.user = user
-        res.redirect('/')
-      } else {
-        console.log('incorrect username or passphrase ')
-        req.session.username = null
-        req.session.user = null
-        res.redirect('/login')
+      if(!user){
+        res.locals.authError = 'user does not exist'
+        res.render('pwlogin')
+      }else{
+        res.locals.authError = null
+        const isMatch = await bcrypt.compare(passphrase,user.passphrase);
+        if (isMatch) {
+          req.session.username = username //req.body
+          req.session.user = user
+          res.redirect('/')
+        } else {
+          res.locals.authError = 'incorrect username or passphrase '
+          req.session.username = null
+          req.session.user = null
+          res.render('pwlogin')
+        }
       }
     }catch(e){
       next(e)
@@ -99,7 +106,7 @@ router.post('/signup',
       // here we use destructuring to get fields from req.body
       const {username,passphrase,passphrase2,age} = req.body
       if (passphrase != passphrase2){
-        res.redirect('/login')
+        res.redirect('pwlogin')
       }else {
         const encrypted = await bcrypt.hash(passphrase, saltRounds);
 
@@ -107,8 +114,8 @@ router.post('/signup',
         const duplicates = await User.find({username})
         
         if (duplicates.length>0){
-          // it would be better to render a page with an error message instead of this plain text response
-          res.send("username has already been taken, please go back and try another username")
+          res.locals.authError = 'username has already been taken, please go back and try another username'
+          res.render('pwlogin')
         }else {
           // the username has not been taken so create a new user and store it in the database
           const user = new User(
@@ -118,6 +125,7 @@ router.post('/signup',
             })
           
           await user.save()
+          res.locals.authError = null // clear the error message
           req.session.username = user.username
           req.session.user = user
           res.redirect('/')
