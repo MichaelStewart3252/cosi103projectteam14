@@ -29,7 +29,7 @@ router.get('/transaction/',
     const records = await Transaction.find().lean();
     for (let i = 0; i < records.length; i++) {
       const record = records[i];
-      record.dateFormatted = new Date(record.date).toLocaleDateString();
+      record.dateFormatted = new Date(record.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
     }
     res.render('showTransaction', {records, show});
 });
