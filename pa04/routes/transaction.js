@@ -37,18 +37,24 @@ router.get('/transaction/',
 
 router.get('/sortBy', isLoggedIn, async (req, res, next) => {
   const show = req.query.show;
-  let records = [];
   if (show === 'sortByCategory') {
     
   } else if (show === 'sortByAmount') {
-    
+    let records =
+      await Transaction.aggregate(
+        [
+          {$sort:{"amount":-1}},
+        ]
+      )
+     
+      res.render("sortByAmount", {records})
+
   } else if (show === 'sortByDescription') {
     
   } else if (show === 'sortByDate') {
     
   }
   
-  res.render('showTransaction', { records, show });
 });
 
 /* add the value in the body to the list associated to the key */
