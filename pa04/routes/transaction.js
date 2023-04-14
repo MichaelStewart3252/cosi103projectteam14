@@ -26,7 +26,7 @@ router.get('/transaction/',
   isLoggedIn,
   async (req, res, next) => {
     const show = req.query.show;
-    const records = await Transaction.find().lean();
+    const records = await Transaction.find({userId:req.user._id}).lean();
     res.render('showTransaction', {records, show});
 });
 
