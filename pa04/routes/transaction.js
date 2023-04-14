@@ -38,7 +38,14 @@ router.get('/transaction/',
 router.get('/sortBy', isLoggedIn, async (req, res, next) => {
   const show = req.query.show;
   if (show === 'sortByCategory') {
-    
+    let records = 
+      await Transaction.aggregate(
+        [
+          {$sort:{"category":1}}
+        ]
+      )
+      records.dateFormatted = new Date(records.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
+      res.render("sortByCategory", {records})
   } else if (show === 'sortByAmount') {
     let records =
       await Transaction.aggregate(
@@ -46,11 +53,19 @@ router.get('/sortBy', isLoggedIn, async (req, res, next) => {
           {$sort:{"amount":-1}},
         ]
       )
-     
+      records.dateFormatted = new Date(records.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
       res.render("sortByAmount", {records})
 
   } else if (show === 'sortByDescription') {
-    
+    let records = 
+      await Transaction.aggregate(
+        [
+          {$sort:{"description": 1}},
+        ]
+        
+      )
+      records.dateFormatted = new Date(records.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
+      res.render("sortByDescription", {records})
   } else if (show === 'sortByDate') {
     
   }
