@@ -40,7 +40,6 @@ router.get('/sortBy', isLoggedIn, async (req, res, next) => {
           {$sort:{"category":1}}
         ]
       )
-      records.dateFormatted = new Date(records.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
       res.render("sortByCategory", {records})
   } else if (show === 'sortByAmount') {
     let records =
@@ -49,7 +48,6 @@ router.get('/sortBy', isLoggedIn, async (req, res, next) => {
           {$sort:{"amount":-1}},
         ]
       )
-      records.dateFormatted = new Date(records.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
       res.render("sortByAmount", {records})
 
   } else if (show === 'sortByDescription') {
@@ -60,7 +58,6 @@ router.get('/sortBy', isLoggedIn, async (req, res, next) => {
         ]
         
       )
-      records.dateFormatted = new Date(records.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
       res.render("sortByDescription", {records})
   } else if (show === 'sortByDate') {
     
