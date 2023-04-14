@@ -7,8 +7,7 @@ var transactionSchema = Schema( {
   description: String,
   amount: Number,
   category: String,
-  date: Date,
-  createdAt: Date,
+  date: String,
   userId: {type:ObjectId, ref:'user' }
 });
 

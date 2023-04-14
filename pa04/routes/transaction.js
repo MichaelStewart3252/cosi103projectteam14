@@ -27,10 +27,6 @@ router.get('/transaction/',
   async (req, res, next) => {
     const show = req.query.show;
     const records = await Transaction.find().lean();
-    for (let i = 0; i < records.length; i++) {
-      const record = records[i];
-      record.dateFormatted = new Date(record.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
-    }
     res.render('showTransaction', {records, show});
 });
 
@@ -76,14 +72,14 @@ router.get('/sortBy', isLoggedIn, async (req, res, next) => {
 router.post('/transaction',
   isLoggedIn,
   async (req, res, next) => {
-      const date = new Date(req.body.date).toLocaleDateString();
+      const date = new Date(req.body.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
+      console.log(date)
       const transaction = new Transaction(
         {
           description: req.body.description,
           amount: req.body.amount,
           category: req.body.category,
-          date: new Date(date),
-          createdAt: new Date(),
+          date:  date,
           userId: req.user._id
         })
       await transaction.save();
@@ -115,12 +111,11 @@ isLoggedIn,
 async (req, res, next) => {
 
   const {description, amount, category, date, itemId} = req.body;
-  const newDate = new Date(date).toLocaleDateString()
   const updateData = {
     description: description, 
     amount: amount,
     category: category,
-    date: new Date(newDate)
+    dateFormatted: date
   }
 
   await Transaction.findByIdAndUpdate(itemId, updateData, { new: true })
