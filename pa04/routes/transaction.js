@@ -63,7 +63,7 @@ router.get('/sortBy', isLoggedIn, async (req, res, next) => {
 
   } else if (show === 'sortByDate') {
     let records = 
-      await Transaction.find({userId:req.user._id}).sort({date:1})
+      await Transaction.find({userId:req.user._id}).sort({date:-1})
       res.render("sortByDate", {records})
   }
   
