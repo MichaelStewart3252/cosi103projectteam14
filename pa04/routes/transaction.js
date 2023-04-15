@@ -76,8 +76,11 @@ router.get('/sortBy', isLoggedIn, async (req, res, next) => {
 router.post('/transaction',
   isLoggedIn,
   async (req, res, next) => {
-      const date = new Date(req.body.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'});
+      const date = new Date(req.body.date).toDateString();
       console.log(date)
+
+      // const date = new Date(req.body.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timezone: 'UTC'});
+      // console.log(date)
       const transaction = new Transaction(
         {
           description: req.body.description,
@@ -135,8 +138,20 @@ router.get('/transaction/byCategory',
   isLoggedIn,
   async (req, res, next) => {
     const show = req.query.show;
-    const records = await Transaction.find({userId:req.user._id}).lean();
-    res.render('byCategory', {records, show});
+    // console.log(show.$group)
+    // res.render("byCategory")
+
+
+    console.log("inside /transaction/byCategory")
+    if (show === 'byCategory') {
+      let records = 
+        await Transaction.aggregate(
+          [
+            {$group:{"category": 1}}
+          ]
+        )
+        res.render("byCategory", {records})
+  }
 });
 
 module.exports = router;
