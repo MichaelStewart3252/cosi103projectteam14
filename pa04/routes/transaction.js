@@ -60,7 +60,14 @@ router.get('/sortBy', isLoggedIn, async (req, res, next) => {
       )
       res.render("sortByDescription", {records})
   } else if (show === 'sortByDate') {
-    
+    let records = 
+      await Transaction.aggregate(
+        [
+          {$sort:{"date": -1}},
+        ]
+        
+      )
+      res.render("sortByDate", {records})
   }
   
 });
@@ -127,7 +134,9 @@ async (req, res, next) => {
 router.get('/transaction/byCategory',
   isLoggedIn,
   async (req, res, next) => {
-    
+    const show = req.query.show;
+    const records = await Transaction.find({userId:req.user._id}).lean();
+    res.render('byCategory', {records, show});
 });
 
 module.exports = router;
