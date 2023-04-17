@@ -35,32 +35,20 @@ router.get('/sortBy', isLoggedIn, async (req, res, next) => {
   const show = req.query.show;
   if (show === 'sortByCategory') {
     let records = 
-      await Transaction.aggregate(
-        [
-          {$sort:{"category":1}}
-        ]
-      )
-      res.render("sortByCategory", {records})
+    await Transaction.find({userId:req.user._id}).sort({category: 1})
+    res.render("sortByCategory", {records})
       
   } else if (show === 'sortByAmount') {
     let records =
-      await Transaction.aggregate(
-        [
-          {$sort:{"amount":-1}},
-        ]
-      )
-      res.render("sortByAmount", {records})
+    await Transaction.find({userId:req.user._id}).sort({amount: -1})
+    res.render("sortByAmount", {records})
 
   } else if (show === 'sortByDescription') {
     let records = 
-      await Transaction.aggregate(
-        [
-          {$sort:{"description": 1}},
-        ]
-        
-      )
-      res.render("sortByDescription", {records})
+    await Transaction.find({userId:req.user._id}).sort({description: 1})
+    res.render("sortByDescription", {records})
 
+  
   } else if (show === 'sortByDate') {
     let records = 
       await Transaction.find({userId:req.user._id}).sort({date:-1})
