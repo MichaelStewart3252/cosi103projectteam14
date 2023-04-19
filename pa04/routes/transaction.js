@@ -122,21 +122,19 @@ async (req, res, next) => {
 router.get('/transaction/byCategory',
   isLoggedIn,
   async (req, res, next) => {
-    const show = req.query.show;
-    // console.log(show.$group)
-    // res.render("byCategory")
-
-
-    console.log("inside /transaction/byCategory")
-    if (show === 'byCategory') {
-      let records = 
-        await Transaction.aggregate(
-          [
-            {$group:{"category": 1}}
-          ]
-        )
-        res.render("byCategory", {records})
-  }
+    let records = 
+          await Transaction.aggregate([
+            { $match: { userId: req.user._id } },            
+            {$group: {               
+                _id: '$category',
+                total: { $sum: '$amount' }
+                }},
+              {$sort: {total: -1,}},
+            
+            ])
+ 
+      res.render('byCategory', {records});
 });
+
 
 module.exports = router;

@@ -2,7 +2,7 @@
 <p>Here is your list of things to do!</p>
 
 <ul>
-    <a href="showTransaction.ejs">transaction table</a>
+    <a href="/transaction">transaction table</a>
 </ul>
 
   <div class="row">
@@ -18,8 +18,8 @@
         <tbody>
             <% records.forEach(record => { %>
               <tr>
-                <td><%= record.category %></td>
-                <td><%= record.amount %></td>
+                <td><%= record._id %></td>
+                <td><%= record.total %></td>
               </tr>
             <% }) %>
         </tbody>
