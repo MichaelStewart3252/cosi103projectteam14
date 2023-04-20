@@ -25,8 +25,8 @@ We converted pa03 that was built with python and SQL, to a NoSQL based, fully wo
 - Language: JavaScript
 - Template: EJS
 
--npm install 
--export MONGODB_URI="mongodb+srv://cs103aSpr23:oDyglzBvRw47EJAU@cluster0.kgugl.mongodb.net/?retryWrites=true&w=majority"
--npm start
+- npm install 
+- export MONGODB_URI="mongodb+srv://cs103aSpr23:oDyglzBvRw47EJAU@cluster0.kgugl.mongodb.net/?retryWrites=true&w=majority"
+- npm start
 
 
