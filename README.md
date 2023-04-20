@@ -2,9 +2,14 @@
 Michael, Harry, Eric, Xiaoran, Ming
 ## [CA01](ca01) 
 We created a website that allows user to generate responses with the ChatGPT API. 
-
 - Framework: Flask
 - Language: Python, HTML/CSS
+On Mac
+% pip3 install openai
+% pip3 install flask
+% export APIKEY="......."  # in bash
+% python3 gptwebapp.py
+
 ## [PA03](pa03)
 We created a finance tracker that allows user to store their transaction and analyze them. Users can create transactions and label them under different categories and users have the option to sort the transactions with the dates, month, or year.
 
@@ -19,5 +24,9 @@ We converted pa03 that was built with python and SQL, to a NoSQL based, fully wo
 - Libraries: Mongoose
 - Language: JavaScript
 - Template: EJS
+
+npm install 
+export MONGODB_URI="mongodb+srv://cs103aSpr23:oDyglzBvRw47EJAU@cluster0.kgugl.mongodb.net/?retryWrites=true&w=majority"
+npm start
 
 
