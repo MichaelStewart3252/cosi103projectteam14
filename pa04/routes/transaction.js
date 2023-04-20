@@ -63,9 +63,6 @@ router.post('/transaction',
   async (req, res, next) => {
       const date = new Date(req.body.date).toDateString();
       console.log(date)
-
-      // const date = new Date(req.body.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timezone: 'UTC'});
-      // console.log(date)
       const transaction = new Transaction(
         {
           description: req.body.description,
