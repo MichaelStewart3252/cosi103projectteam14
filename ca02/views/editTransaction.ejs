@@ -1,0 +1,39 @@
+<% if(updated) { %>
+  <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>description</th>
+          <th>amount</th>
+          <th>category</th>
+          <th>date</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%= item.description %></td>
+            <td><%= item.amount %></td>
+            <td><%= item.category %></td>
+            <td><%= item.date %></td>
+          </tr>
+      </tbody>
+  </table>
+  <form method="POST" action="/transaction/updateTransaction">
+      <input type="hidden" name="itemId" value="<%= item._id %>">
+      description: 
+      <input type="text" name="description" value="<%= item.description %>" placeholder="description">
+      <br>
+      amount: 
+      <input type="number" name="amount" placeholder="amount" value="<%= item.amount %>">
+      <br>
+      category: 
+      <input type="text" name="category" placeholder="category" value="<%= item.category %>">
+      <br>
+      date: 
+      <input type="text" name="date" placeholder="<%= item.date %>" onfocus="(this.type='date')" onblur="(this.type='text')" >
+      <br>
+      <input type="submit" value="store">
+  </form>
+<% }else {%>
+  <div>Transaction Updated!</div>
+  <a href="/transaction">return</a>
+<% }%>
