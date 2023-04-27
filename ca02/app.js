@@ -6,7 +6,7 @@ const logger = require('morgan');
 const layouts = require("express-ejs-layouts");
 const pw_auth_router = require('./routes/pwauth')
 const transactionRouter = require('./routes/transaction');
-
+const prompts = require('./routes/prompt')
 const User = require('./models/User');
 
 /* **************************************** */
@@ -113,7 +113,6 @@ app.get('/prompt',
 )
 
 app.use(transactionRouter);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

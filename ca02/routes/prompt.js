@@ -22,21 +22,10 @@ router.post('/prompt',
     res.render('prompt');
 });
 
-router.get('/prompt', isLoggedIn, async (req, res, next) => {
-    const show = req.query.show;
-    if (show === 'Michael') {
-   
-        
-    } else if (show === 'sortByAmount') {
-      
-    } else if (show === 'sortByDescription') {
-      
-  
-    
-    } else if (show === 'sortByDate') {
-     
-    }
-    
-  });
+router.get('/prompt/Michael',
+  isLoggedIn,
+  async (req, res, next) => {
+    res.redirect('Michael')
+});
 
 module.exports = router;
