@@ -105,6 +105,13 @@ app.get('/about',
   }
 )
 
+app.get('/prompt',
+  isLoggedIn,
+  (req,res,next) => {
+    res.render('prompt');
+  }
+)
+
 app.use(transactionRouter);
 
 // catch 404 and forward to error handler
