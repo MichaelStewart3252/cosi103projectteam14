@@ -4,6 +4,12 @@ Michael, Harry, Eric, Xiaoran, Ming
 We created a website that allows user to generate responses with the ChatGPT API. 
 - Framework: Flask
 - Language: Python, HTML/CSS
+## [CA02](ca02) 
+As an improvemnt from ca01, we created a web app using Express/Mongoose/EJS and the OpenAI API which uses prompt engineering to generate useful responses to specific user queries.
+- Framework: Express
+- Language: JavaScript, HTML/CSS
+
+
 
 ## [PA03](pa03)
 We created a finance tracker that allows user to store their transaction and analyze them. Users can create transactions and label them under different categories and users have the option to sort the transactions with the dates, month, or year.
