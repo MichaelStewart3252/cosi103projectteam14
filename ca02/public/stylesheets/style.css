@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+.Michael{
+  width: 200px;
+  height: auto;
+}
+.members{
+  display: flex;
+  flex-direction: column;
+}
+.member{
+  font-size: 26px;
+
+  padding-bottom: 30px;
+}
