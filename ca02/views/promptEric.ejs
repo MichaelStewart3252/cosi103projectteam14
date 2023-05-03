@@ -1,0 +1,22 @@
+<% if(updated) { %>
+    <h1>Eric's Prompt</h1>
+    
+    <div class="container">
+        <tbody>
+        <h1>Eric</h1>
+        <h2>Enter a date of your choice to see what day is it!</h2>
+        <form method="POST" action="/prompt/post"> 
+            <textarea name="date"></textarea>
+            <p><input class="submit" type=submit value="President's Birthday"><p/>
+        </form>
+    </tbody>
+    </div> 
+    
+    
+    
+    <% }else {%>
+        <div>This is my response!</div>
+        <h2><%= response %></h2>
+            </div>
+        <a href="/">return</a>
+    <% }%>
