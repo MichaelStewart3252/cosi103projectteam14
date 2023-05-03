@@ -4,9 +4,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const layouts = require("express-ejs-layouts");
-const pw_auth_router = require('./routes/pwauth')
-const promptRouter = require('./routes/prompt')
-const harryRouter = require('./routes/harry')
+const pw_auth_router = require('./routes/pwauth');
+const promptRouter = require('./routes/prompt');
+const harryRouter = require('./routes/harry');
+const xiaoranRouter = require('./routes/xiaoran');
+const checkLoginStatus = require('./checkLoginStatus');
 const User = require('./models/User');
 
 /* **************************************** */
@@ -46,17 +48,6 @@ store.on('error', function(error) {
 });
 
 
-/* **************************************** */
-/*  middleware to make sure a user is logged in */
-/* **************************************** */
-function isLoggedIn(req, res, next) {
-  "if they are logged in, continue; otherwise redirect to /login "
-  if (res.locals.loggedIn) {
-    next();
-  } else {
-    res.redirect("/login");
-  }
-}
 
 /* **************************************** */
 /* creating the app */
@@ -103,21 +94,22 @@ app.get('/team' , (req,res,next) => {
 });
 
 app.get('/about', 
-  isLoggedIn,
+  checkLoginStatus,
   (req,res,next) => {
     res.render('about');
   }
 )
 
 app.get('/prompt',
-  isLoggedIn,
+  checkLoginStatus,
   (req,res,next) => {
     res.render('prompt');
   }
 )
 
-app.use(promptRouter)
-app.use(harryRouter)
+app.use(promptRouter);
+app.use(harryRouter);
+app.use(xiaoranRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

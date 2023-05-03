@@ -20,8 +20,8 @@ router.get('/prompt/Xiaoran',
 
 
 router.post('/prompt/post', checkLoginStatus, async (req, res) => {
-  let course = req.body.course;  
-  let prompt = `generate a recipe for ${course}`;
+  let date = req.body.date;  
+  let prompt = `what day to celebrate on ${date}?`;
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: prompt,

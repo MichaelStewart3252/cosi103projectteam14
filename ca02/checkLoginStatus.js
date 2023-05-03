@@ -1,4 +1,4 @@
-isLoggedIn = (req,res,next) => {
+const isLoggedIn = (req,res,next) => {
     if (res.locals.loggedIn) {
       next()
     } else {
