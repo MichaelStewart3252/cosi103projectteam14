@@ -11,6 +11,7 @@ const xiaoranRouter = require('./routes/xiaoran');
 const ericRouter = require('./routes/eric');
 const checkLoginStatus = require('./checkLoginStatus');
 const User = require('./models/User');
+const ApiRequest = require('./models/apiRequest');
 
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
@@ -107,6 +108,7 @@ app.get('/prompt',
     res.render('prompt');
   }
 )
+
 
 app.use(promptRouter);
 app.use(harryRouter);

@@ -3,11 +3,11 @@ const mongoose = require( 'mongoose' );
 const Schema = mongoose.Schema;
 
 var apiRequestSchema = Schema( {
-    timestamp: { type: Date, default: Date.now },
-    endpoint: String,
+    timestamp: Date,
     prompt: String,
-    responseStatusCode: Number,
-    responseBody: Object,
+    input: String, 
+    response: String,
+    userId: String
 } );
 
 module.exports = mongoose.model( 'apiRequest', apiRequestSchema );
