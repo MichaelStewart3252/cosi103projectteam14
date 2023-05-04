@@ -10,6 +10,9 @@ a {
 .Michael{
   width: 200px;
   height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .members{
   display: flex;
@@ -19,4 +22,26 @@ a {
   font-size: 26px;
 
   padding-bottom: 30px;
+}
+
+.Eric{
+  width: 400px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Name{
+  text-align: center;
+}
+
+.Title{
+  text-align: center;
+}
+
+.Paragraph{
+  text-align: center;
+  margin-right: 8%;
+  margin-left: 8%;
 }
