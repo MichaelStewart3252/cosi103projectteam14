@@ -22,6 +22,11 @@ router.get('/prompt/Eric',
 router.post('/prompt/ericpost', checkLoginStatus, async (req, res) => {
   let date = req.body.course;  
   let prompt = `Enter the president you're wanting to know the birthday for ${date}`;
+  const user = await User.findOne({username:req.session.username});
+  const configuration = new Configuration({
+    apiKey: user.APIKEY
+  });
+  const openai = new OpenAIApi(configuration);
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: prompt,
@@ -33,4 +38,5 @@ router.post('/prompt/ericpost', checkLoginStatus, async (req, res) => {
   res.locals.updated = false; 
   res.render('Eric', {response});
 });
+
 module.exports = router;
