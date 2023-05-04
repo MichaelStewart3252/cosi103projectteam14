@@ -1,4 +1,4 @@
-
+<% if (!loggedIn) {%> 
     <h1>links to team-members pages</h1>
 
     <div class="members">
@@ -8,6 +8,40 @@
         <a href="/prompt/Eric" style = "color:green;"class="member">Eric's Prompt</a>
         <a href="" style = "color:blue;"class="member">Michael's Prompt</a>
     </div>
+
+    <% } else if (APIsaved) {%> 
+        <h2>links to team-members pages</h2>
+        <h1>Your apikey is saved! Go try our prompt!</h1>
+            <div class="members">
+                <a href="/prompt/Xiaoran" style = "color:red;" class="member">Xiaoran's Prompt</a>
+                <a href="" style = "color:orange;"class="member">Ming's Prompt</a>
+                <a href="/prompt/Harry" style = "color:yellow;"class="member">Harry's Prompt</a>
+                <a href="/prompt/Eric" style = "color:green;"class="member">Eric's Prompt</a>
+                <a href="" style = "color:blue;"class="member">Michael's Prompt</a>
+            </div>
+
+        <% } else {%> 
+            <h2>links to team-members pages</h2>
+            <div class="col-sm-5">
+                <h1>save your apikey for futher use!</h1>
+                <form method="post" action="/save">
+                    apikey: 
+                       <input type="text" autocomplete="apikey" name="apikey"><br>
+                    confirm apikey: 
+                        <input type="text" name="apikey2"><br>       
+                      
+                        
+                    <input type="submit">
+                </form>
+            </div>
+            <div class="members">
+                <a href="/prompt/Xiaoran" style = "color:red;" class="member">Xiaoran's Prompt</a>
+                <a href="" style = "color:orange;"class="member">Ming's Prompt</a>
+                <a href="/prompt/Harry" style = "color:yellow;"class="member">Harry's Prompt</a>
+                <a href="/prompt/Eric" style = "color:green;"class="member">Eric's Prompt</a>
+                <a href="" style = "color:blue;"class="member">Michael's Prompt</a>
+            </div>
+            <% } %>
     
 
   
