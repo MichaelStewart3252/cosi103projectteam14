@@ -10,7 +10,7 @@ const promptRouter = require('./routes/prompt');
 const harryRouter = require('./routes/harry');
 const xiaoranRouter = require('./routes/xiaoran');
 const ericRouter = require('./routes/eric');
-const checkLoginStatus = require('./checkLoginStatus');
+const checkLoginStatus = require('./middlewares/checkLoginStatus');
 const User = require('./models/User');
 const ApiRequest = require('./models/apiRequest');
 

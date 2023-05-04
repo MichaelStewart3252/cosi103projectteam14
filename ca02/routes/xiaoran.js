@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const ApiRequest = require('../models/apiRequest');
-const checkLoginStatus = require("../checkLoginStatus");
+const checkLoginStatus = require("../middlewares/checkLoginStatus");
 
 const { Configuration, OpenAIApi } = require("openai");
 // const configuration = new Configuration({

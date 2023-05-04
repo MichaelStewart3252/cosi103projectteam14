@@ -18,7 +18,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const checkLoginStatus = require('../checkLoginStatus');
+const checkLoginStatus = require('../middlewares/checkLoginStatus');
 const User = require('../models/User')
 
 

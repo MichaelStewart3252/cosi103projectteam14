@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const checkLoginStatus = require("../checkLoginStatus");
+const checkLoginStatus = require("../middlewares/checkLoginStatus");
 
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
@@ -15,7 +15,7 @@ router.get('/prompt/Eric',
   isLoggedIn, 
   async (req, res) => {  
     res.locals.updated = true;
-    res.render("promptEric");  
+    res.render("Eric");  
 });
 
 
@@ -31,6 +31,6 @@ router.post('/prompt/ericpost', checkLoginStatus, async (req, res) => {
   console.log(completion);
   let response = completion.data.choices[0].text;
   res.locals.updated = false; 
-  res.render('promptEric', {response});
+  res.render('Eric', {response});
 });
 module.exports = router;
