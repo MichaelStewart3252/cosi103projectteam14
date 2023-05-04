@@ -12,17 +12,6 @@ isLoggedIn = (req,res,next) => {
 }
 
 
-router.post('/prompt',
-  isLoggedIn,
-  async (req, res, next) => {
-    const show = req.query.show
-    res.render('prompt');
-});
 
-router.get('/prompt/Michael',
-  isLoggedIn,
-  async (req, res, next) => {
-    res.redirect('Michael')
-});
 
 module.exports = router;
