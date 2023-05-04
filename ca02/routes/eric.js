@@ -20,7 +20,7 @@ router.get('/prompt/Eric',
 
 
 router.post('/prompt/ericpost', checkLoginStatus, async (req, res) => {
-  let date = req.body.course;  
+  let date = req.body.date;  
   let prompt = `Enter the president you're wanting to know the birthday for ${date}`;
   const user = await User.findOne({username:req.session.username});
   const configuration = new Configuration({
