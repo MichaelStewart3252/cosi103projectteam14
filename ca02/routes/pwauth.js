@@ -18,6 +18,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const checkLoginStatus = require('../checkLoginStatus');
 const User = require('../models/User')
 
 
@@ -143,16 +144,8 @@ router.get('/logout', (req,res) => {
   res.redirect('/');
 })
 
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-    if (res.locals.loggedIn){
-      return next();
-    } else {
-      res.redirect('/login');
-    }
-}
 
-router.isLoggedIn = isLoggedIn;
+router.checkLoginStatus = checkLoginStatus;
 
 
 module.exports = router;

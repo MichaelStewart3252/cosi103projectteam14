@@ -19,7 +19,7 @@ router.get('/prompt/Xiaoran',
 });
 
 
-router.post('/prompt/post', checkLoginStatus, async (req, res) => {
+router.post('/prompt/xiaoran/post', checkLoginStatus, async (req, res) => {
   let date = req.body.date;  
   let prompt = `what day to celebrate on ${date}?`;
   const completion = await openai.createCompletion({
