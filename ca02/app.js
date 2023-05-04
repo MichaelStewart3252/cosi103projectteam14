@@ -110,6 +110,7 @@ app.get('/prompt',
 app.use(promptRouter);
 app.use(harryRouter);
 app.use(xiaoranRouter);
+app.use(ericRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
