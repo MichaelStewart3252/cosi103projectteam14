@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const layouts = require("express-ejs-layouts");
+const api_auth_router = require('./routes/apiauth');
 const pw_auth_router = require('./routes/pwauth');
 const promptRouter = require('./routes/prompt');
 const harryRouter = require('./routes/harry');
@@ -84,6 +85,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(pw_auth_router)
+
+app.use(api_auth_router)
 
 app.use(layouts);
 
