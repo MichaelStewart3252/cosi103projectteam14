@@ -27,6 +27,7 @@ router.post('/prompt/xiaoran/post', checkLoginStatus, async (req, res) => {
   const configuration = new Configuration({
     apiKey: user.APIKEY
   });
+  const openai = new OpenAIApi(configuration);
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: prompt,
