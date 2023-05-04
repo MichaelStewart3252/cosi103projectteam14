@@ -5,11 +5,11 @@ const ApiRequest = require('../models/apiRequest');
 const checkLoginStatus = require("../checkLoginStatus");
 
 const { Configuration, OpenAIApi } = require("openai");
-const configuration = new Configuration({
-    apiKey: "",
-});
-// const configuration = new Configuration({apiKey: User.APIKEY});
-const openai = new OpenAIApi(configuration);
+// const configuration = new Configuration({
+//     apiKey: "",
+// });
+// // const configuration = new Configuration({apiKey: User.APIKEY});
+// const openai = new OpenAIApi(configuration);
 
 
 router.get('/prompt/Xiaoran', 
@@ -23,6 +23,10 @@ router.get('/prompt/Xiaoran',
 router.post('/prompt/xiaoran/post', checkLoginStatus, async (req, res) => {
   let date = req.body.date;  
   let prompt = `what day to celebrate on ${date}?`;
+  const user = await User.findOne({username:req.session.username});
+  const configuration = new Configuration({
+    apiKey: user.APIKEY
+  });
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: prompt,
