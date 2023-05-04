@@ -5,7 +5,7 @@ const checkLoginStatus = require("../checkLoginStatus");
 
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
-    apiKey: "",
+    apiKey: "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",
 });
 // const configuration = new Configuration({apiKey: User.APIKEY});
 const openai = new OpenAIApi(configuration);
