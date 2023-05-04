@@ -8,6 +8,7 @@ const pw_auth_router = require('./routes/pwauth');
 const promptRouter = require('./routes/prompt');
 const harryRouter = require('./routes/harry');
 const xiaoranRouter = require('./routes/xiaoran');
+const ericRouter = require('./routes/eric');
 const checkLoginStatus = require('./checkLoginStatus');
 const User = require('./models/User');
 
