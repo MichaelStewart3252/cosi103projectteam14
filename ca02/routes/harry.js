@@ -19,7 +19,7 @@ router.get('/prompt/Harry',
 });
 
 
-router.post('/prompt/post', checkLoginStatus, async (req, res) => {
+router.post('/prompt/harrypost', checkLoginStatus, async (req, res) => {
   let course = req.body.course;  
   let prompt = `generate a recipe for ${course}`;
   const completion = await openai.createCompletion({

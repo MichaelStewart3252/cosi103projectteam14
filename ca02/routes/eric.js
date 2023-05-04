@@ -19,7 +19,7 @@ router.get('/prompt/Eric',
 });
 
 
-router.post('/prompt/post', checkLoginStatus, async (req, res) => {
+router.post('/prompt/ericpost', checkLoginStatus, async (req, res) => {
   let date = req.body.course;  
   let prompt = `Enter the president you're wanting to know the birthday for ${date}`;
   const completion = await openai.createCompletion({

@@ -8,13 +8,14 @@ const pw_auth_router = require('./routes/pwauth');
 const promptRouter = require('./routes/prompt');
 const harryRouter = require('./routes/harry');
 const xiaoranRouter = require('./routes/xiaoran');
+const ericRouter = require('./routes/eric');
 const checkLoginStatus = require('./checkLoginStatus');
 const User = require('./models/User');
 
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
 /* **************************************** */
-const mongodb_URI = 'mongodb://127.0.0.1:27017/pwdemo';
+const mongodb_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pwdemo';
 console.log('MONGODB_URI=',process.env.MONGODB_URI);
 
 const mongoose = require( 'mongoose' );
@@ -110,6 +111,7 @@ app.get('/prompt',
 app.use(promptRouter);
 app.use(harryRouter);
 app.use(xiaoranRouter);
+app.use(ericRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
