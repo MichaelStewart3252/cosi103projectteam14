@@ -1,1 +1,22 @@
-<p>Fire</p>
+<% if(updated) { %>
+    <h1>Michael's Prompt</h1>
+    
+    <div class="container">
+        <tbody>
+        <h1>Michael</h1>
+        <h2>Enter the data structure of your choice!</h2>
+        <form method="POST" action="/prompt/michael/post"> 
+            <textarea name="ds"></textarea>
+            <p><input class="submit" type=submit value="Tell me more!"></p>
+        </form>
+    </tbody>
+    </div> 
+    
+    
+    
+    <% }else {%>
+        <div>This is my response!</div>
+        <h2><%= response %></h2>
+            </div>
+        <a href="/">return</a>
+    <% }%>

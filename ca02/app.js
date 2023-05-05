@@ -10,6 +10,7 @@ const promptRouter = require('./routes/prompt');
 const harryRouter = require('./routes/harry');
 const xiaoranRouter = require('./routes/xiaoran');
 const ericRouter = require('./routes/eric');
+const michaelRouter = require('./routes/michael');
 const checkLoginStatus = require('./middlewares/checkLoginStatus');
 const User = require('./models/User');
 const ApiRequest = require('./models/apiRequest');
@@ -117,6 +118,7 @@ app.use(promptRouter);
 app.use(harryRouter);
 app.use(xiaoranRouter);
 app.use(ericRouter);
+app.use(michaelRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

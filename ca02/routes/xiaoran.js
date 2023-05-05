@@ -40,7 +40,7 @@ router.post('/prompt/xiaoran/post', checkLoginStatus, async (req, res) => {
     const apiRequest = new ApiRequest(
       {
         timestamp: Date.now(),
-        input: req.body.date,
+        input: date,
         prompt: prompt,
         response: response,
         userId: req.session.user._id
