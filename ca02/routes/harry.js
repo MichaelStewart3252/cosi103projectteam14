@@ -45,7 +45,8 @@ router.post('/prompt/harrypost', checkLoginStatus, async (req, res) => {
     res.locals.updated = false; 
     res.render('Harry', {response});
   }catch{
-    render('/')
+    res.locals.updated = true; 
+    res.render('Harry')
   }
   
 });

@@ -20,7 +20,7 @@ router.post('/prompt/ming/post', checkLoginStatus, async (req, res) => {
     res.locals.updated = false; 
     res.render('Ming', {response});
   }catch{
-    render('/')
+    res.render('Ming')
   }
 });
 module.exports = router;

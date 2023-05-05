@@ -21,7 +21,7 @@ router.post('/prompt/xiaoran/post', checkLoginStatus, async (req, res) => {
     res.locals.updated = false; 
     res.render('Xiaoran', {response});
   }catch{
-    render('/')
+    res.render('/')
   }
 });
 module.exports = router;

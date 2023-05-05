@@ -20,7 +20,7 @@ router.post('/prompt/michael/post', checkLoginStatus, async (req, res) => {
     res.locals.updated = false; 
     res.render('Michael', {response});
   }catch{
-    render('/')
+    res.render('/')
   }
 
 });
