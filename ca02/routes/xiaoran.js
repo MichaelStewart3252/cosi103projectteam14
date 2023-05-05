@@ -4,13 +4,6 @@ const router = express.Router();
 const checkLoginStatus = require("../middlewares/checkLoginStatus");
 const { generateResponse } = require("../middlewares/APIConfig");
 
-const { Configuration, OpenAIApi } = require("openai");
-// const configuration = new Configuration({
-//     apiKey: "",
-// });
-// // const configuration = new Configuration({apiKey: User.APIKEY});
-// const openai = new OpenAIApi(configuration);
-
 
 router.get('/prompt/Xiaoran', 
   checkLoginStatus, 

@@ -11,9 +11,10 @@ const harryRouter = require('./routes/harry');
 const xiaoranRouter = require('./routes/xiaoran');
 const ericRouter = require('./routes/eric');
 const michaelRouter = require('./routes/michael');
+const mingRouter = require('./routes/ming');
+
 const checkLoginStatus = require('./middlewares/checkLoginStatus');
-const User = require('./models/User');
-const ApiRequest = require('./models/apiRequest');
+
 
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
@@ -123,6 +124,7 @@ app.use(harryRouter);
 app.use(xiaoranRouter);
 app.use(ericRouter);
 app.use(michaelRouter);
+app.use(mingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
