@@ -38,7 +38,7 @@ module.exports = {
         return response
 
       }catch(error){
-        console.error( error.response.data.error)
+        console.error(error.response.data.error)
         // console.error('incorrect api key');
         throw new Error('incorrect api key');
       }

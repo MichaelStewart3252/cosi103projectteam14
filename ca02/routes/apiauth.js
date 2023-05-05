@@ -55,40 +55,40 @@ router.post('/save',
     try {
       const {apikey,apikey2} = req.body
       if (apikey != apikey2){
+        console.log('api keys do not match')
         res.redirect('/')
       }else {
-          User.findOneAndUpdate({username:req.session.username}, { APIKEY: apikey }, {new: true})
-            .then(async (updatedUser) => {
-                const configuration = new Configuration({
-                  apiKey: updatedUser.APIKEY
-                });
-           
-                const openai = new OpenAIApi(configuration);
-             
-                console.log('before', openai)
-                // this checks if the apikey is valid by making a request to openai
-                await openai.createCompletion({
-                  model: "text-davinci-003",
-                  prompt: 'check api key',
-                  max_tokens: 1024,
-                  temperature: 0.8,  
-                });
-
-                req.session.APIKEY = apikey
-                res.locals.APIsaved = true
-                // res.locals.APIKEY = apikey
-          
-                
-                console.log("apikey added successfully:", updatedUser); 
-                res.redirect('/')
-                
-            })
-            .catch((error) => {
-                console.error( error.response.data.error)
-                res.redirect('/?invalidKey=true')
+          try{
+            const configuration = new Configuration({
+              apiKey: apikey
             });
-        }
+        
+            const openai = new OpenAIApi(configuration);
+          
+   
+            // this checks if the apikey is valid by making a request to openai
+            await openai.createCompletion({
+              model: "text-davinci-003",
+              prompt: 'check api key',
+              max_tokens: 1024,
+              temperature: 0.8,  
+            });
+            // if the apikey is valie it adds it to the user model
+            await User.findOneAndUpdate({username:req.session.username}, { APIKEY: apikey }, {new: true})
 
+
+            req.session.APIKEY = apikey
+            res.locals.APIsaved = true
+            // res.locals.APIKEY = apikey
+      
+            res.redirect('/?invalidKey=false')
+
+          }catch(error){
+            console.log('error message', error)
+            // console.error(error.response.data.error)
+            res.redirect('/?invalidKey=true')
+          }
+        }
     }catch(e){
       next(e)
     }
