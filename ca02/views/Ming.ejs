@@ -1,0 +1,22 @@
+<% if(updated) { %>
+    <h1>Ming's Prompt</h1>
+    
+    <div class="container">
+        <tbody>
+        <h1>Ming</h1>
+        <h2>Enter a stat of a NBA player, and it will return the player that has the highest number </h2>
+        <form method="POST" action="/prompt/Ming/post"> 
+            <textarea name="input"></textarea>
+            <p><input class="submit" type=submit><p/>
+        </form>
+    </tbody>
+    </div> 
+    
+    
+    
+    <% }else {%>
+        <div>This is my response!</div>
+        <h2><%= response %></h2>
+            </div>
+        <a href="/">return</a>
+    <% }%>

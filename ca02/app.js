@@ -11,9 +11,10 @@ const harryRouter = require('./routes/harry');
 const xiaoranRouter = require('./routes/xiaoran');
 const ericRouter = require('./routes/eric');
 const michaelRouter = require('./routes/michael');
+const mingRouter = require('./routes/ming');
+
 const checkLoginStatus = require('./middlewares/checkLoginStatus');
-const User = require('./models/User');
-const ApiRequest = require('./models/apiRequest');
+
 
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
@@ -22,6 +23,8 @@ const mongodb_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pwdemo
 console.log('MONGODB_URI=',process.env.MONGODB_URI);
 
 const mongoose = require( 'mongoose' );
+
+mongoose.set('strictQuery', true);
 
 mongoose.connect( mongodb_URI);
 
@@ -84,7 +87,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-
 app.use(pw_auth_router)
 
 app.use(api_auth_router)
@@ -92,7 +94,14 @@ app.use(api_auth_router)
 app.use(layouts);
 
 app.get('/', (req,res,next) => {
-  res.render('index');
+
+  // variable to check if the user entered an invalid key
+  let invalidKey = false;
+  if (req.query.hasOwnProperty('invalidKey')) {
+   invalidKey = req.query.invalidKey
+  }
+
+  res.render('index', {invalidKey: invalidKey});
 })
 
 app.get('/team' , (req,res,next) => {
@@ -119,6 +128,7 @@ app.use(harryRouter);
 app.use(xiaoranRouter);
 app.use(ericRouter);
 app.use(michaelRouter);
+app.use(mingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
