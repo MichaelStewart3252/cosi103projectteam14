@@ -3,6 +3,7 @@
   /save (post)
   /change (get and post)
   /use (get)
+  /delete (get)
 
   When the user logs in or signs in, 
   it adds their apikey to the req.session for use in the app.js controller
@@ -20,19 +21,29 @@ const User = require('../models/User')
 
 
 
-router.use((req,res,next) => {
-  if (req.session.APIKEY != null) {
-    console.log("apikey found in session:", req.session.APIKEY)
-    res.locals.APIsaved = true
+router.use( async (req,res,next) => {
 
-    // res.locals.APIKEY = req.session.APIKEY
-  } else {
-    res.locals.APIsaved = false
-
-    // res.locals.APIKEY = null                                                  
+  await User.findOne({username:req.session.username})
+  .then((user) => {
+    if(user == null){
+      next()
+    }else{
+      if (user.APIKEY != null) {
+        console.log("apikey found in db:", user.APIKEY)
+        res.locals.APIsaved = true
+      } else {
+        res.locals.APIsaved = false
+        console.log("apikey not found in db")
+                                               
+      }
+      next()
+    }
+  })
+  .catch((error) => {
+    console.log('Error finding user:', error);
+  
   }
-
-  next()
+  );
 })
 
 // when a user signed in and want to save their apikey

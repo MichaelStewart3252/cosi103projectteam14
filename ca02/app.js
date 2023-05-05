@@ -24,6 +24,8 @@ console.log('MONGODB_URI=',process.env.MONGODB_URI);
 
 const mongoose = require( 'mongoose' );
 
+mongoose.set('strictQuery', true);
+
 mongoose.connect( mongodb_URI);
 
 const db = mongoose.connection;
@@ -92,6 +94,8 @@ app.use(api_auth_router)
 app.use(layouts);
 
 app.get('/', (req,res,next) => {
+
+  // variable to check if the user entered an invalid key
   let invalidKey = false;
   if (req.query.hasOwnProperty('invalidKey')) {
    invalidKey = req.query.invalidKey
