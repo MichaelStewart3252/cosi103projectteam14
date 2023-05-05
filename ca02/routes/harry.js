@@ -40,9 +40,13 @@ router.post('/prompt/harrypost', checkLoginStatus, async (req, res) => {
 
   // let response = completion.data.choices[0].text;
 
-  const response = await generateResponse(req, res, prompt);
-  res.locals.updated = false; 
-  res.render('Harry', {response});
+  try{
+    const response = await generateResponse(req, res, prompt, course);
+    res.locals.updated = false; 
+    res.render('Harry', {response});
+  }catch{
+    render('/')
+  }
   
 });
 

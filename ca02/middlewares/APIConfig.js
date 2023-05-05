@@ -1,15 +1,15 @@
 
 const { Configuration, OpenAIApi } = require("openai");
 const User = require('../models/User');
+const ApiRequest = require('../models/apiRequest');
 
 module.exports = {
-  generateResponse: async (req, res, prompt) => {
+  generateResponse: async (req, res, prompt, input) => {
 
     const user = await User.findOne({username:req.session.username});
     const configuration = new Configuration({
       apiKey: user.APIKEY
     });
-    const openai = new OpenAIApi(configuration);
     try{
         const openai = new OpenAIApi(configuration);
         const completion = await openai.createCompletion({
@@ -19,12 +19,27 @@ module.exports = {
           temperature: 0.8,  
         });
         // console.log(completion);
-        let response = completion.data.choices[0].text;
+        const response = completion.data.choices[0].text;
+        try{
+          const apiRequest = new ApiRequest(
+            {
+              timestamp: Date.now(),
+              input: input,
+              prompt: prompt,
+              response: response,
+              userId: req.session.user._id
+            });
+          await apiRequest.save();
+          console.log('saved response in database')
+        }catch(error){
+          console.dir(error)
+          console.error('could not save save response in database');
+        }
         return response
 
       }catch(error){
         console.error('incorrect api key');
-        res.render('/')
+        throw new Error('incorrect api key');
       }
 }
   
