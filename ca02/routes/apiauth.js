@@ -78,7 +78,7 @@ router.post('/save',
 
 
             req.session.APIKEY = apikey
-            res.locals.APIsaved = true
+            res.locals.APIsaved = true 
             // res.locals.APIKEY = apikey
       
             res.redirect('/?invalidKey=false')
