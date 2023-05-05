@@ -13,32 +13,25 @@
 
 const express = require('express');
 const router = express.Router();
-// const bcrypt = require('bcrypt');
-// const saltRounds = 10;
+const { Configuration, OpenAIApi } = require("openai");
+
 const checkLoginStatus = require('../middlewares/checkLoginStatus');
 const User = require('../models/User')
 
 
-// this next route is also middleware that modifies the
-// req and res objects for later routes to access.
-// First, it checks the session variable: req.session
-// if it has a apikey then it means the user has saved their apikey in
-// and it can send the apikey to the views
-// via res.locals.  It also adds the user to req.user
-// so it can be accessed in two ways: res.locals.user or req.user
-// if the user hasn't logged in (or has logged out),
-// it sets the apikey to null just to be safe
-//
 
 router.use((req,res,next) => {
   if (req.session.APIKEY != null) {
     console.log("apikey found in session:", req.session.APIKEY)
     res.locals.APIsaved = true
-    res.locals.APIKEY = req.session.APIKEY
+
+    // res.locals.APIKEY = req.session.APIKEY
   } else {
     res.locals.APIsaved = false
-    res.locals.APIKEY = null
+
+    // res.locals.APIKEY = null                                                  
   }
+
   next()
 })
 
@@ -53,18 +46,36 @@ router.post('/save',
       if (apikey != apikey2){
         res.redirect('/')
       }else {
-          User.findOneAndUpdate({username:req.session.username}, { APIKEY: apikey })
-            .then((updatedUser) => {
-                console.log("apikey added successfully:", updatedUser);
+          User.findOneAndUpdate({username:req.session.username}, { APIKEY: apikey }, {new: true})
+            .then(async (updatedUser) => {
+                const configuration = new Configuration({
+                  apiKey: updatedUser.APIKEY
+                });
+           
+                const openai = new OpenAIApi(configuration);
+             
+                console.log('before', openai)
+                // this checks if the apikey is valid by making a request to openai
+                await openai.createCompletion({
+                  model: "text-davinci-003",
+                  prompt: 'check api key',
+                  max_tokens: 1024,
+                  temperature: 0.8,  
+                });
+
+                req.session.APIKEY = apikey
+                res.locals.APIsaved = true
+                // res.locals.APIKEY = apikey
+          
+                
+                console.log("apikey added successfully:", updatedUser); 
+                res.redirect('/')
+                
             })
             .catch((error) => {
-                console.error("Error adding apikey:", error);
+                console.error( error.response.data.error)
+                res.redirect('/?invalidKey=true')
             });
-            
-          res.locals.APIsaved = true
-          res.locals.APIKEY = apikey
-          req.session.APIKEY = apikey
-          res.redirect('/')
         }
 
     }catch(e){
@@ -72,7 +83,18 @@ router.post('/save',
     }
   })
 
-
+router.get('/deleteAPIKEY', checkLoginStatus, async (req,res,next) =>{  
+  User.findOneAndUpdate({username:req.session.username}, { APIKEY: null }, {new: true})
+  .then((updatedUser) => {
+    console.log('apikey deleted successfully:', updatedUser);
+  })
+  .catch((error) => {
+    console.log('Error deleting apikey:', error);
+  });
+  res.locals.APIsaved = false
+  req.session.APIKEY = null
+  res.redirect('/')
+})
 
 router.checkLoginStatus = checkLoginStatus;
 

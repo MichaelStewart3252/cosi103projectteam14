@@ -84,7 +84,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-
 app.use(pw_auth_router)
 
 app.use(api_auth_router)
@@ -92,7 +91,12 @@ app.use(api_auth_router)
 app.use(layouts);
 
 app.get('/', (req,res,next) => {
-  res.render('index');
+  let invalidKey = false;
+  if (req.query.hasOwnProperty('invalidKey')) {
+   invalidKey = req.query.invalidKey
+  }
+
+  res.render('index', {invalidKey: invalidKey});
 })
 
 app.get('/team' , (req,res,next) => {
